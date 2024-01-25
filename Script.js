@@ -133,6 +133,9 @@ window.addEventListener('scroll', function() {
   }
 });
 
+
+
+
 document.getElementById('sortby').addEventListener('change', function(e) {
   const sortValue = e.target.value;
   sortProducts(sortValue);
@@ -331,3 +334,56 @@ function emptyCart() {
 // end of filter gallery
 // Script.js
 
+// FOR API
+  document.addEventListener("DOMContentLoaded", function () {
+    const APIKEY = "65b1bdfb7d4b3e4dd97e0419";
+  
+    document.getElementById("contact-submit").addEventListener("click", function (e) {
+      e.preventDefault(); // Prevent default form submission
+  
+      let userName = document.getElementById("user-name").value;
+      let userPwd = document.getElementById("user-pwd").value;
+      let userEmail = document.getElementById("user-email").value;
+  
+      // Ensure the JSON keys match your database collection's field names
+      let jsondata = {
+        "user-name": userName,
+        "user-pwd": userPwd,
+        "user-email": userEmail,
+      };
+  
+      let settings = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-apikey": APIKEY,
+          "Cache-Control": "no-cache"
+        },
+        body: JSON.stringify(jsondata)
+      };
+  
+      document.getElementById("contact-submit").disabled = true; // Disable the submit button
+  
+      // Make sure the URL matches the correct endpoint for your collection
+      fetch("https://pointsystem-f0f2.restdb.io/rest/account ", settings)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log("Success:", data);
+          // TODO: Update frontend UI
+          // Clear the form after successful data submission
+          document.getElementById("add-contact-form").reset();
+        })
+        .catch(error => {
+          console.error("Error during fetch:", error);
+        })
+        .finally(() => {
+          document.getElementById("contact-submit").disabled = false; // Re-enable the submit button
+        });
+    });
+  });
+  

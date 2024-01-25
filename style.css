@@ -117,8 +117,12 @@ header .navbar {
     backdrop-filter: blur(5px); /* make sure when the menu bar clicked background will turn blur  */
   }
 
+  .navbar::after{
+    width: 100%;
+  }
+
   .navbar {
-    z-index: 1000;  /* adjustment for the nav bar */
+    z-index: 1000; /* adjustment for the nav bar */
   }
 
   .navbar .logo {
@@ -322,6 +326,23 @@ header .navbar {
   from {opacity: .4} 
   to {opacity: 1}
 }
+
+@media (max-width: 600px) {
+  .slideshow-container {
+    height: 300px; /* Adjust the height for mobile screens */
+  }
+
+  .prev, .next {
+    font-size: 18px; /* Adjust the font size for mobile screens */
+  }
+
+  .mySlides img {
+    height: auto; /* Make images responsive on mobile */
+  }
+}
+
+
+
 
 .middle {
   margin-top: 50px;
@@ -1392,6 +1413,7 @@ table td:nth-last-child(1) {
   margin:1em 0;
 }
 
+/* start of the rewards program  */
 .rewards-section {
   display: flex;
   align-items: center;
@@ -1436,12 +1458,7 @@ table td:nth-last-child(1) {
   width: 50%;
   height: 300px; /* Or adjust to your preference */
 }
-.rewards-works-text {
-  text-align: center;
-  padding: 40px;
-  text-decoration: #CD8D7A underline;
-  text-underline-offset: 10px;
-}
+
 /* Responsive adjustments */
 @media (max-width: 600px) {
   .rewards-section {
@@ -1457,6 +1474,21 @@ table td:nth-last-child(1) {
   }
 }
 
+/* how it works  */
+.rewards-works-text {
+  text-align: center;
+  padding: 40px;
+  
+}
+
+.rewards-works-text h1{
+  font-size: large;
+}
+.rewards-works-text p{
+  padding-top: 10px;
+  text-decoration: #CD8D7A underline;
+  text-underline-offset: 10px; /*white spacing between words and line*/
+}
 .steps-container {
   display: flex;
   justify-content: center;
@@ -1493,16 +1525,26 @@ table td:nth-last-child(1) {
 @media (max-width: 600px) {
   .steps-container {
       flex-direction: column;
+      
+      
   }
+ 
 }
 
-
-
-.rewards-work-points {
+/* how earn points  */
+#rewards-work-points {
   text-align: center;
+  padding: 40px;
+  
+}
+
+#rewards-work-points h1{
+  font-size: large;
+}
+#rewards-work-points p{
+  padding-top: 10px;
   text-decoration: #CD8D7A underline;
-  text-underline-offset: 10px;
-  padding: 50px;
+  text-underline-offset: 10px; /*white spacing between words and line*/
 }
 
 .rewards-container {
@@ -1542,11 +1584,184 @@ table td:nth-last-child(1) {
   color: #333;
 }
 
-.rewards-reedem-points{
+
+
+/* redeem reward */
+#rewards-reedem-points {
   text-align: center;
-  text-decoration: #CD8D7A underline;
-  text-underline-offset: 10px;
-  padding: 30px;
+  padding: 40px;
+  
 }
 
+#rewards-reedem-points h1{
+  font-size: large;
+}
+#rewards-reedem-points p{
+  padding-top: 10px;
+  text-decoration: #CD8D7A underline;
+  text-underline-offset: 10px; /*white spacing between words and line*/
+}
+.discounts-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
 
+}
+
+.discount {
+  text-align: center;
+  padding: 10px;
+  gap: 100px;
+  padding: 50px;
+}
+
+.discount-icon {
+  font-size: 48px; /* Adjust size as needed */
+  color: grey;
+}
+ .discount-icon i {
+  color: #CD8D7A;
+ }
+.discount-info {
+  margin-top: 8px;
+}
+
+.discount-amount {
+  display: block;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+}
+
+.discount-points {
+  font-size: 0.8em;
+  color: #666;
+}
+
+/* endbtn for games html*/
+.endtext {
+  text-align: center;
+  padding: 40px;
+  
+}
+
+.endtext h1{
+  font-size: large;
+}
+.endtext p{
+  padding-top: 10px;
+  text-decoration: #CD8D7A underline;
+  text-underline-offset: 10px; /*white spacing between words and line*/
+}
+.jnBtn {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 50px;
+  padding-top: 20px;
+  background-color: transparent;
+  
+}
+
+.jnBtn a {
+  text-align: center;
+  text-decoration: none;
+  background-color: #CD8D7A;
+  color: white;
+  border-radius: 15px;
+  padding: 15px 10px;
+  width: 100px;
+}
+
+/* loginpage */
+.login-container {
+  background: transparent;
+  border-radius: 10px;
+  display: flex;
+  max-width: 100%;
+  height: 120%;
+  margin: 20px;
+}
+
+.login-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+
+.illustration img {
+  max-width: 80%;
+  height: 100%;
+  padding-left: 20px;
+}
+
+.login-content {
+  text-align: center;
+  margin-top: 30px;
+  padding-right: 110px;
+  
+}
+
+.login-content h1 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.login-content p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.login-content form {
+  margin-bottom: 20px;
+}
+
+input[type=email], input[type=password], input[type=text]{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+form button {
+  background-color: #CD8D7A;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.social-login {
+  margin-bottom: 10px;
+}
+
+.social-login button {
+  font-size: 24px;
+  line-height: 24px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.signup {
+  font-size: 12px;
+}
+
+.signup a {
+  color: #333;
+  text-decoration: none;
+}
+/* mini games  */

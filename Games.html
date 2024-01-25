@@ -51,7 +51,9 @@
         <div class="rewards-content">
             <h2>Saturday. Rewards Program</h2>
             <p>Earn points and rewards on your favorite styles. Get exclusive discounts and more...</p>
+            <a href="Register.html">
             <button id="joinNow">JOIN NOW</button>
+            </a>
         </div>
         <div class="rewards-image">
             <!-- Image of the person can be added as a background-image through CSS -->
@@ -61,6 +63,7 @@
 
     <div class="rewards-works-text">
       <h1>How It Works</h1>
+      <p>Know how our program works to get free upgrades</p>
     </div>
 
     <div class="steps-container">
@@ -71,28 +74,32 @@
       </div>
       <!-- must link to  the section on "how can earn points" -->
       <div class="step">
-          <img src="images/voucher earn points.png" alt="Earn Points">
+        <a href="#rewards-work-points">
+          <img src="images/voucher earn points.png" alt="Earn Points"></a>
           <h3>2. Earn Points</h3>
       </div>
-      <!-- link to game page (havent created -21/1/24) -->
+      <!-- link to game page -->
       <div class="step">
-        <img src="images/videogame.png" alt="Earn Points">
+        <a href="gamestoearnpoints.html">
+        <img src="images/videogame.png" alt="Earn Points"></a>
         <h3>3.  Play Games  </h3>
-    </div>
+      </div>
     <!-- link to the checkout (probs is the cart im gonna changw it too) -->
       <div class="step">
-          <img src="images/redeem-points_2037257.png" alt="Redeem on Orders">
-          <h3>3. Redeem on Orders</h3>
+        <a href="#rewards-reedem-points">
+          <img src="images/redeem-points_2037257.png" alt="Redeem on Orders"></a>
+          <h3>3. Redeem Points</h3>
       </div>
   </div>
 
-  <div class="rewards-work-points">
+  <div id ="rewards-work-points">
     <h1>How Can You Earn Points</h1>
+    <p>Get rewarded sooner by doing these task below </p>
   </div>
 
-  <div class="rewards-container">
+  <div class ="rewards-container">
     <div class="reward">
-        <div class="points-circle">50 points</div>
+        <div class="points-circle">10 points</div>
         <p>Like on Facebook</p>
     </div>
     <div class="reward">
@@ -100,23 +107,66 @@
         <p>Play Games</p>
     </div>
     <div class="reward">
-        <div class="points-circle">$1 = 1Point</div>
+        <div class="points-circle">$1 = 1Points</div>
         <p>Place an Order</p>
     </div>
     <div class="reward">
-        <div class="points-circle">100 points</div>
+        <div class="points-circle">50 points</div>
         <p>Sign Up</p>
     </div>
 </div>
 
-<div class="rewards-reedem-points">
-  <h1>Reedem Points</h1>
+<div id="rewards-reedem-points">
+  <h1>Redeem Points</h1>
+  <p>Redeem your points for these great rewards</p>
 </div>
 
 
 <!-- need add redeem points section here  -->
+<div class="discounts-container">
+  <div class="discount">
+      <div class="discount-icon"><i class="fa fa-money"></i></div>
+      <div class="discount-info">
+          <span class="discount-amount">$5 OFF</span>
+          <span class="discount-points">for 500 points</span>
+      </div>
+  </div>
+  <div class="discount">
+      <div class="discount-icon"><i class="fa fa-money"></i></div>
+      <div class="discount-info">
+          <span class="discount-amount">$10 OFF</span>
+          <span class="discount-points">for 1000 points</span>
+      </div>
+  </div>
+  <div class="discount">
+      <div class="discount-icon"><i class="fa fa-money"></i></div>
+      <div class="discount-info">
+          <span class="discount-amount">$25 OFF</span>
+          <span class="discount-points">for 2500 points</span>
+      </div>
+  </div>
+  <div class="discount">
+      <div class="discount-icon"><i class="fa fa-money"></i></div>
+      <div class="discount-info">
+          <span class="discount-amount">$50 OFF</span>
+          <span class="discount-points">for 5000 points</span>
+      </div>
+  </div>
+</div>
 
+<div class="endtext">
+  <h1>Start Earning Today</h1>
+  <p>Create a free account and earn with every purchase</p>
+</div>
 
+<div class="jnBtn">
+  <a href="Register.html">
+    LOG IN 
+  </a>
+  <a href="Register.html">
+    SIGN UP 
+  </a>
+</div>
 
 
 <!-- footer section  -->
@@ -145,6 +195,6 @@
   </div>
   </footer>
 
-    
+<script src="Script.js"></script>
 </body>
 </html>

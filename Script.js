@@ -43,41 +43,32 @@ function filterImages(category) {
 
 // end of filter gallery
 
-
 // Execute the following code when the window has fully loaded
 window.addEventListener("load", function () {
-    // Set a timeout function to execute after 2000 milliseconds (2 seconds)
-    setTimeout(function () {
-        // Open the popup
-        openPopup();
-    }, 2000);
+  // Set a timeout function to execute after 2000 milliseconds (2 seconds)
+  setTimeout(function () {
+      // Open the popup
+      openPopup();
+  }, 2000);
 });
 
 // Add a click event listener to the element with id 'close'
 document.querySelector("#close").addEventListener("click", function () {
-    // Close the popup when the 'close' element is clicked
-    closePopup();
+  // Close the popup when the 'close' element is clicked
+  closePopup();
 });
 
 // Function to open the popup
+function openPopup() {
+  document.querySelector(".popup").style.display = "block";
+}
 
-// Function to display text and hide the form
-function displayText() {
-    // Get the form element and hide it
-    var form = document.getElementById('form');
-    form.style.display = 'none';
-
-    // Get the text element and display it
-    var text = document.getElementById('textMsg');
-    text.style.display = 'block';
+// Function to close the popup
+function closePopup() {
+  document.querySelector(".popup").style.display = "none";
 }
 
 
-// alert
-function showAlert() {
-    alert("Your vouhcer have been sucessfully credited in your cart.");
-  }
-  
 
 // slideshow
 let slideIndex = 1;
@@ -134,61 +125,6 @@ window.addEventListener('scroll', function() {
 });
 
 
-
-
-document.getElementById('sortby').addEventListener('change', function(e) {
-  const sortValue = e.target.value;
-  sortProducts(sortValue);
-});
-
-function sortProducts(sortValue) {
-  // Define your sorting logic here
-  switch (sortValue) {
-      case 'newest':
-          // Sort products by date, new to old
-          break;
-      case 'oldest':
-          // Sort products by date, old to new
-          break;
-      case 'price_low_high':
-          // Sort products by price, low to high
-          break;
-      case 'price_high_low':
-          // Sort products by price, high to low
-          break;
-      // Handle more cases as needed
-  }
-  // Update the product-list with sorted products
-  renderProducts();
-}
-
-function renderProducts() {
-  // Assuming you have a function to render products to the DOM
-  // It would clear the current product list and append the sorted products
-}
-
-
-// // filter gallery
-// // Select relevant HTML elements for image filtering
-// function filterImages(category) {
-//   // Get all elements with the class 'item'
-//   const items = document.querySelectorAll('.card');
-
-//   // Loop through each item
-//   items.forEach(item => {
-//       // Get the value of the 'data-name' attribute of the current item
-//       const dataCategory = item.getAttribute('data-name');
-
-//       // Check if the category is 'all' or matches the data-category of the item
-//       if (category === 'all' || dataCategory === category) {
-//           // Display the item
-//           item.style.display = 'block';
-//       } else {
-//           // Hide the item
-//           item.style.display = 'none';
-//       }
-//   });
-// }
 
 
 
@@ -335,55 +271,65 @@ function emptyCart() {
 // Script.js
 
 // FOR API
-  document.addEventListener("DOMContentLoaded", function () {
-    const APIKEY = "65b1bdfb7d4b3e4dd97e0419";
-  
-    document.getElementById("contact-submit").addEventListener("click", function (e) {
-      e.preventDefault(); // Prevent default form submission
-  
-      let userName = document.getElementById("user-name").value;
-      let userPwd = document.getElementById("user-pwd").value;
-      let userEmail = document.getElementById("user-email").value;
-  
-      // Ensure the JSON keys match your database collection's field names
-      let jsondata = {
-        "user-name": userName,
-        "user-pwd": userPwd,
-        "user-email": userEmail,
-      };
-  
-      let settings = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "x-apikey": APIKEY,
-          "Cache-Control": "no-cache"
-        },
-        body: JSON.stringify(jsondata)
-      };
-  
-      document.getElementById("contact-submit").disabled = true; // Disable the submit button
-  
-      // Make sure the URL matches the correct endpoint for your collection
-      fetch("https://pointsystem-f0f2.restdb.io/rest/account ", settings)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log("Success:", data);
-          // TODO: Update frontend UI
-          // Clear the form after successful data submission
-          document.getElementById("add-contact-form").reset();
-        })
-        .catch(error => {
-          console.error("Error during fetch:", error);
-        })
-        .finally(() => {
-          document.getElementById("contact-submit").disabled = false; // Re-enable the submit button
-        });
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  const APIKEY = "65b241fe7307821d4f6708b6";
+  //getContacts();
+  //document.getElementById("update-contact-container").style.display = "none";
+  //document.getElementById("add-update-msg").style.display = "none";
+
+  //[STEP 1]: Create our submit form listener
+  document.getElementById("contact-submit").addEventListener("click", function (e) {
+    // Prevent default action of the button 
+    e.preventDefault();
+
+    let userName = document.getElementById("user-Name").value;
+    let userEmail = document.getElementById("user-Email").value;
+    let userPwd = document.getElementById("user-Pwd").value;
+    
+
+    //[STEP 3]: Get form values when the user clicks on send
+    // Adapted from restdb API
+    let jsondata = {
+      "user-Name": userName,
+      "user-Email": userEmail,
+      "user-Pwd": userPwd,
+    };
+
+    //[STEP 4]: Create our AJAX settings. Take note of API key
+    let settings = {
+      method: "POST", //[cher] we will use post to send info
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": APIKEY,
+        "Cache-Control": "no-cache"
+      },
+      body: JSON.stringify(jsondata),
+      beforeSend: function () {
+        //@TODO use loading bar instead
+        // Disable our button or show loading bar
+        document.getElementById("contact-submit").disabled = true;
+        
+      }
+    }
+
+    //[STEP 5]: Send our AJAX request over to the DB and print response of the RESTDB storage to console.
+    fetch("https://fedassg2-9396.restdb.io/rest/accountdetails", settings)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        document.getElementById("contact-submit").disabled = false;
+        //@TODO update frontend UI 
+       //document.getElementById("add-update-msg").style.display = "block";
+        //setTimeout(function () {
+          //document.getElementById("add-update-msg").style.display = "none";
+        //}, 3000);
+        // Update our table 
+        //getContacts();
+        // Clear our form using the form ID and triggering its reset feature
+        document.getElementById("add-contact-form").reset();
+      });
   });
-  
+
+});
+ 
+ 

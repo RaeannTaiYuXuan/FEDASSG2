@@ -909,26 +909,39 @@ form .text h3{
     box-sizing: border-box;
 }
 .popup{
-    background-color: #FFF5EE;
-    width: 50%;
-    height: 400px;
-    padding: 30px 40px;
-    position: fixed;
-    transform: translate(-50%,-50%);
-    left: 50%;
-    top: 50%;
-    border-radius: 5px;
-    
-    display: none; 
-    text-align: center;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  width: 100%;
+  height: 50%;
+  padding: 30px 40px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  border-radius: 5px;
+  overflow: hidden;
+  display: none;
+  text-align: center;
+  z-index: 999; /* Add a high z-index value to bring the popup in front */
+}
+.popup img {
+  width: 100%; /* Adjust if needed */
+  height: auto; /* Adjust if needed */
+  border-radius: 10px;
+  margin-top: 1rem;
 }
 .popup button{
     display: block;
-    margin:  0 0 20px auto;
+    margin:  10px 10px 20px auto;
     background-color: transparent;
     font-size: 30px;
-    color: #ffffff;
-    background: #7a816e;
+    color: black;
+    background: transparent;
     border-radius: 100%;
     width: 40px;
     height: 40px;
@@ -936,30 +949,26 @@ form .text h3{
     outline: none;
     cursor: pointer;
 }
+.popup button:hover{
+  background-color: transparent;
+  color: gray;
+}
 .popup h2{
-  margin-top: -20px;
-  font-weight: bold;
-  font-size: 50px;
+  color: #333;
+  margin-bottom: 5px;
 }
 .popup p{
-    font-size: 20px;
-    text-align: center;
-    margin: 30px 0;
-    line-height: 25px;
+  color: #666;
+  margin-top: 0;
 }
-.popup a{
-    display: block;
-    width: 150px;
-    position: relative;
-    margin: 50px auto;
-    text-align: center;
-    background-color: #7a816e;
-    border-radius: 20px;
-    color: #f9f3e7;
-    text-decoration: none;
-    padding: 8px 0;
-}
+.popup a {
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+  background-color: #CD8D7A;
+  color: white;
 
+}
 
 form .text h3{
  color: #333;
@@ -973,6 +982,7 @@ form .text h3 a{
 form .text h3 a:hover{
   text-decoration: underline;
 }
+
 
 @media (max-width: 600px) {
   .popup {
@@ -1692,9 +1702,9 @@ table td:nth-last-child(1) {
 }
 
 .illustration img {
-  max-width: 80%;
+  max-width: 90%;
   height: 100%;
-  padding-left: 20px;
+  padding-left: 15px;
 }
 
 .login-content {
@@ -1764,4 +1774,104 @@ form button {
   color: #333;
   text-decoration: none;
 }
-/* mini games  */
+
+/* Contaact section  */
+
+.contact-section {
+  display: flex;
+  max-width: 100%;
+  height: 500px;
+  margin: 40px;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.contacttext {
+  text-align: center;
+  padding: 30px;
+}
+.contacttext h1{
+  font-size: 20px;
+}
+.contacttext p {
+  font-size: 15px;
+}
+.contact-form {
+  padding: 30px;
+  flex-basis: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 15px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #f0f0f0;
+}
+
+.contact-form textarea {
+  padding: 50px 15px;
+}
+
+.contact-form button {
+  padding: 15px;
+  border: none;
+  border-radius: 5px;
+  background: #CD8D7A;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: #9a9c84;
+}
+
+/* games to earn points  */
+.gameImg img{
+  width: 100%;
+  height: 100%;
+}
+
+.seperator {
+  background-color: transparent;
+  text-align: center;
+  padding: 50px ;
+  margin-top: 10px;
+}
+.seperator h1{
+  text-decoration: #CD8D7A underline;
+  text-underline-offset: 10px;
+}
+.gamestoplay {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  gap: 100px;
+}
+.game {
+  background-color: #fff; /* White background for each step */
+  border: 1px solid #ddd; /* Light border for each step */
+  border-radius: 10px; /* Rounded corners for each step */
+  text-align: center; /* Center the text */
+  padding: 20px; /* Padding around the content */
+  width: 200px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+.game img {
+  width: 100%; /* Adjust image size as needed */
+  margin-bottom: 10px; /* Space between image and text */
+}
+

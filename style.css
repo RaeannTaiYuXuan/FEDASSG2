@@ -79,7 +79,14 @@ header .navbar {
   color: black; /* Change text color on hover for menu links */
 }
 
-
+/* this is for the new account  */
+#navbar-account a{
+  padding-top: 8px;
+  color: white; /* Set text color for menu links */
+  font-size: small; /* Set font weight for menu links */
+  text-decoration: none; /* Remove underline from menu links */
+  transition: 0.2s ease;
+}
 
 /* Mobile menu and hamburger button styling */
 #close-menu-btn {

@@ -18,7 +18,6 @@ closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
 
 
 
-
 // Select relevant HTML elements for image filtering
 function filterImages(category) {
     // Get all elements with the class 'item'
@@ -127,92 +126,61 @@ window.addEventListener('scroll', function() {
 
 
 
+// this is for the shopping cart thingy
+// shoppingcart.js
 
 document.addEventListener('DOMContentLoaded', function () {
-  // Get all elements with the class 'add-to-cart-button'
-  var addToCartButtons = document.querySelectorAll('.add-to-cart-button');
-
-  // Add click event listener to each 'Add to Cart' button
-  addToCartButtons.forEach(function (button) {
-      button.addEventListener('click', function (event) {
-          // Prevent the default behavior of the anchor tag
-          event.preventDefault();
-
-          // Get the product name, price, and image from the clicked button's data attributes
-          var productName = button.getAttribute('data-name');
-          var productPrice = parseFloat(button.getAttribute('data-price'));
-          var productImage = button.getAttribute('data-image');
-
-          // Call a function to add the item to the shopping cart
-          addToCart(productName, productPrice, productImage);
-
-          
-      });
-      loadCartState();
-  });
-
+  loadCartState();
 });
 
 function loadCartState() {
-  var savedCart = localStorage.getItem('cart');
-  if (savedCart) {
-      var items = JSON.parse(savedCart);
-      items.forEach(function(item) {
-          addToCart(item.name, item.price, item.image, item.quantity);
-      });
-  }
+  var items = getCartItems();
+  items.forEach(function (item) {
+    renderCartItem(item);
+  });
+  updateCartTotals();
 }
 
-function addToCart(name, price, image) {
+function renderCartItem(item) {
   var newRow = document.createElement('tr');
-
-  // Image cell
   var imageCell = document.createElement('td');
   var imageElement = document.createElement('img');
-  imageElement.src = image;
-  imageElement.alt = name;
+  imageElement.src = item.image;
+  imageElement.alt = item.name;
   imageElement.style.width = '50px'; // Adjust the image size as needed
   imageCell.appendChild(imageElement);
 
-  // Name cell
   var nameCell = document.createElement('td');
-  nameCell.textContent = name;
+  nameCell.textContent = item.name;
 
-  // Price cell
   var priceCell = document.createElement('td');
-  priceCell.textContent = '$' + price.toFixed(2);
+  priceCell.textContent = '$' + item.price.toFixed(2);
 
-  // Quantity cell
   var quantityCell = document.createElement('td');
-  var quantity = 1;
-  quantityCell.textContent = quantity;
+  quantityCell.textContent = item.quantity;
 
-  // Increment cell
-  var incrementCell = createQuantityButton('+', function() {
-      quantity++;
-      quantityCell.textContent = quantity;
+  var incrementCell = createQuantityButton('+', function () {
+    item.quantity++;
+    quantityCell.textContent = item.quantity;
+    updateCartTotals();
+  });
+
+  var decrementCell = createQuantityButton('-', function () {
+    if (item.quantity > 1) {
+      item.quantity--;
+      quantityCell.textContent = item.quantity;
       updateCartTotals();
+    }
   });
 
-  // Decrement cell
-  var decrementCell = createQuantityButton('-', function() {
-      if (quantity > 1) {
-          quantity--;
-          quantityCell.textContent = quantity;
-          updateCartTotals();
-      }
-  });
-
-  // Delete cell
   var deleteCell = document.createElement('td');
   var deleteButton = document.createElement('button');
   deleteButton.textContent = 'Remove';
-  deleteButton.addEventListener('click', function() {
-      deleteCartItem(newRow);
+  deleteButton.addEventListener('click', function () {
+    deleteCartItem(newRow);
   });
   deleteCell.appendChild(deleteButton);
 
-  // Append cells to the new row
   newRow.appendChild(imageCell);
   newRow.appendChild(nameCell);
   newRow.appendChild(priceCell);
@@ -221,14 +189,25 @@ function addToCart(name, price, image) {
   newRow.appendChild(decrementCell);
   newRow.appendChild(deleteCell);
 
-  // Append the new row to the cart items table body
   document.getElementById('carttable').appendChild(newRow);
-
-  // Update the total price in the shopping cart
-  updateCartTotals();
 }
 
-// Function to create quantity buttons
+function updateCartTotals() {
+  var items = document.querySelectorAll('#carttable tr');
+  var total = 0;
+  var itemCount = 0;
+
+  items.forEach(function (item) {
+    var price = parseFloat(item.cells[2].textContent.replace('$', ''));
+    var quantity = parseInt(item.cells[3].textContent);
+    total += price * quantity;
+    itemCount += quantity;
+  });
+
+  document.getElementById('itemsquantity').textContent = itemCount;
+  document.getElementById('total').textContent = total.toFixed(2);
+}
+
 function createQuantityButton(text, clickHandler) {
   var cell = document.createElement('td');
   var button = document.createElement('button');
@@ -238,98 +217,124 @@ function createQuantityButton(text, clickHandler) {
   return cell;
 }
 
-// Function to update cart totals
-function updateCartTotals() {
-  var items = document.querySelectorAll('#carttable tr');
-  var total = 0;
-  var itemCount = 0;
+function deleteCartItem(row) {
+  var itemName = row.cells[1].textContent; // Assuming the name is in the second cell
+  removeFromLocalStorage(itemName);
 
-  items.forEach(function(item) {
-      var price = parseFloat(item.cells[2].textContent.replace('$', ''));
-      var quantity = parseInt(item.cells[3].textContent);
-      total += price * quantity;
-      itemCount += quantity;
+  // Remove the row from the table
+  row.remove();
+
+  // Update cart totals after removing the item
+  updateCartTotals();
+}
+
+function getCartItems() {
+  var cartItems = localStorage.getItem('cart');
+  return cartItems ? JSON.parse(cartItems) : [];
+}
+
+function removeFromLocalStorage(itemName) {
+  // Retrieve existing cart items from localStorage
+  var cartItems = localStorage.getItem('cart');
+  var items = cartItems ? JSON.parse(cartItems) : [];
+
+  // Find the index of the item to remove
+  var index = items.findIndex(function (item) {
+    return item.name === itemName;
   });
 
-  document.getElementById('itemsquantity').textContent = itemCount;
-  document.getElementById('total').textContent = total.toFixed(2);
+  // If the item is found, remove it from the array
+  if (index !== -1) {
+    items.splice(index, 1);
+
+    // Save the updated items to localStorage
+    localStorage.setItem('cart', JSON.stringify(items));
+  }
 }
 
-// Function to delete a cart item
-function deleteCartItem(row) {
-  row.remove();
-  updateCartTotals();
+function addToCart(name, price, image) {
+  var item = { name: name, price: price, image: image, quantity: 1 };
+
+  // Retrieve existing cart items from localStorage
+  var cartItems = localStorage.getItem('cart');
+  var items = cartItems ? JSON.parse(cartItems) : [];
+
+  // Check if the item is already in the cart
+  var existingItem = items.find(function (existingItem) {
+      return existingItem.name === item.name;
+  });
+
+  if (existingItem) {
+      // If the item is already in the cart, just increment its quantity
+      existingItem.quantity++;
+  } else {
+      // If the item is not in the cart, add it to the items array
+      items.push(item);
+  }
+
+  // Save the updated items to localStorage
+  localStorage.setItem('cart', JSON.stringify(items));
 }
 
-// Function to empty the cart
-function emptyCart() {
-  document.getElementById('carttable').innerHTML = '';
-  updateCartTotals();
+document.getElementById('checkout').addEventListener('click', function () {
+  // Get the cart items from local storage
+  var cartItems = getCartItems();
+
+  // Check if the cart is not empty
+  if (cartItems.length > 0) {
+    alert("Log in Now to get 100 points ")
+
+    var totalCost = calculateTotalCost(cartItems);
+    alert('Total Cost:', totalCost);
+
+    // Optionally, clear the cart after checkout
+    clearCart();
+  } else {
+    // Display a message to the user that the cart is empty or handle the checkout of an empty cart
+    alert('The cart is empty. Cannot proceed with checkout.');
+  }
+});
+
+function calculateTotalCost(items) {
+  // Calculate the total cost based on the items in the cart
+  var total = 0;
+  items.forEach(function (item) {
+    total += item.price * item.quantity;
+  });
+  return total.toFixed(2);
 }
+
+function clearCart() {
+  // Clear the cart in both the table and local storage
+  localStorage.removeItem('cart');
+  updateCartTable(); // Assuming you have a function to update the cart table visually
+  updateCartTotals(); // Update cart totals after clearing the cart
+}
+
+// Assuming you have a function to update the cart table visually
+function updateCartTable() {
+  var cartTable = document.getElementById('carttable');
+  // Remove all rows from the table
+  while (cartTable.firstChild) {
+    cartTable.removeChild(cartTable.firstChild);
+  }
+
+  // Reload the cart state after clearing the table
+  loadCartState();
+}
+
+
+
+
+
+// ... (other functions remain unchanged)
+
+
 
 // end of filter gallery
 // Script.js
 
-// FOR API
-document.addEventListener("DOMContentLoaded", function () {
-  const APIKEY = "65b241fe7307821d4f6708b6";
-  //getContacts();
-  //document.getElementById("update-contact-container").style.display = "none";
-  //document.getElementById("add-update-msg").style.display = "none";
-
-  //[STEP 1]: Create our submit form listener
-  document.getElementById("contact-submit").addEventListener("click", function (e) {
-    // Prevent default action of the button 
-    e.preventDefault();
-
-    let userName = document.getElementById("user-Name").value;
-    let userEmail = document.getElementById("user-Email").value;
-    let userPwd = document.getElementById("user-Pwd").value;
-    
-
-    //[STEP 3]: Get form values when the user clicks on send
-    // Adapted from restdb API
-    let jsondata = {
-      "user-Name": userName,
-      "user-Email": userEmail,
-      "user-Pwd": userPwd,
-    };
-
-    //[STEP 4]: Create our AJAX settings. Take note of API key
-    let settings = {
-      method: "POST", //[cher] we will use post to send info
-      headers: {
-        "Content-Type": "application/json",
-        "x-apikey": APIKEY,
-        "Cache-Control": "no-cache"
-      },
-      body: JSON.stringify(jsondata),
-      beforeSend: function () {
-        //@TODO use loading bar instead
-        // Disable our button or show loading bar
-        document.getElementById("contact-submit").disabled = true;
-        
-      }
-    }
-
-    //[STEP 5]: Send our AJAX request over to the DB and print response of the RESTDB storage to console.
-    fetch("https://fedassg2-9396.restdb.io/rest/accountdetails", settings)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        document.getElementById("contact-submit").disabled = false;
-        //@TODO update frontend UI 
-       //document.getElementById("add-update-msg").style.display = "block";
-        //setTimeout(function () {
-          //document.getElementById("add-update-msg").style.display = "none";
-        //}, 3000);
-        // Update our table 
-        //getContacts();
-        // Clear our form using the form ID and triggering its reset feature
-        document.getElementById("add-contact-form").reset();
-      });
-  });
-
-});
  
+
+
  

@@ -34,7 +34,7 @@
         <li><a href="Login.html"style="color: black;">CONTACT US</a></li>
         <li><a href="register.html"style="color: black;">LOG IN </a></li>
         <li><a href="register.html"style="color: black;">SIGN UP </a></li>
-        <li><a href="#shopping-cart" style="color: black;">  <i style="margin-right: 1%;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
+        <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
       </ul>
       <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
     </nav>
@@ -227,55 +227,7 @@
 
 
 <!-- shooping cart  -->
-<div id="shoppingcart">
-    <h2>Shopping Cart</h2>
-    <table>
 
-      <thead>
-        <tr>
-        <th><strong>Image</strong></th>
-        <th><strong>Product</strong></th>
-        <th><strong>Price</strong></th>
-      </tr>
-      </thead>
-
-      <!-- products -->
-      <tbody id="carttable">
-        <div class="quantityIncrement">
-            
-        </div>
-        <div class="quantityDecrement">
-            
-        </div>
-        <div class="removeBtn">
-            
-        </div>
-      </tbody> 
-      
-
-    </table>
-    <hr>
-
-    <table id="carttotals">
-      <tr>
-        <td><strong>Items</strong></td>
-        <td><strong>Total</strong></td>
-      </tr>
-      <tr>
-        <td>x <span id="itemsquantity">0</span></td>
-       
-        <td>$<span id="total">0</span></td>
-
-      </tr>
-    </table>
-
-    <div class="cart-buttons"> 
-      
-      <button id="checkout">Checkout</button>
-    </div>
-
-  </div>
-</div>
 
 
 
@@ -305,6 +257,36 @@ INFERNO Copyright © 2024 Saturday.- All rights reserved
 </div>
 </div>
 </footer>
+
+
+<!-- Your existing product.html code ... -->
+
+<!-- <script>
+    function addToCart(name, price, image) {
+      var item = { name: name, price: price, image: image, quantity: 1 };
+  
+      // Retrieve existing cart items from localStorage
+      var cartItems = localStorage.getItem('cart');
+      var items = cartItems ? JSON.parse(cartItems) : [];
+  
+      // Check if the item is already in the cart
+      var existingItem = items.find(function (existingItem) {
+          return existingItem.name === item.name;
+      });
+  
+      if (existingItem) {
+          // If the item is already in the cart, just increment its quantity
+          existingItem.quantity++;
+      } else {
+          // If the item is not in the cart, add it to the items array
+          items.push(item);
+      }
+  
+      // Save the updated items to localStorage
+      localStorage.setItem('cart', JSON.stringify(items));
+    }
+  </script> -->
+  
 
 <script src="Script.js"></script>
 </body>

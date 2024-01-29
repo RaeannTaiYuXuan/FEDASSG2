@@ -1850,10 +1850,11 @@ form button {
   padding: 50px ;
   margin-top: 10px;
 }
-.seperator h1{
+.seperator p {
   text-decoration: #CD8D7A underline;
   text-underline-offset: 10px;
 }
+
 .gamestoplay {
   display: flex;
   justify-content: center;
@@ -1875,3 +1876,301 @@ form button {
   margin-bottom: 10px; /* Space between image and text */
 }
 
+
+
+/* memorygame */
+.game-wrapper{
+  margin-top: 50px;
+  padding: 30px;
+  background: #CD8D7A;
+  display: flex;
+  justify-content: center;
+  
+}
+
+.memory-cards, .memory-card, .view, .game-details{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memory-cards{
+  height: 350px;
+  width: 350px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.memory-cards .memory-card{
+  cursor: pointer;
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  height: calc(100% / 4 - 10px);
+  width: calc(100% / 4 - 10px);
+}
+
+.memory-card.shake{
+  animation: shake 0.35s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100%{
+    transform: translateX(0);
+  }
+  20%{
+    transform: translateX(-13px);
+  }
+  40%{
+    transform: translateX(13px);
+  }
+  60%{
+    transform: translateX(-8px);
+  }
+  80%{
+    transform: translateX(8px);
+  }
+}
+
+.memory-cards .memory-card .view{
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+  position: absolute;
+  background: #fff;
+  border-radius: 7px;
+  backface-visibility: hidden;
+  transition: transform 0.25s linear;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.memory-card .front-view img{
+  max-width: 17px;
+}
+
+.memory-card .back-view{
+  transform: rotateY(-180deg);
+}
+
+.memory-card .back-view img{
+  max-width: 40px;
+}
+
+.memory-card.flip .front-view{
+  transform: rotateY(180deg);
+}
+
+.memory-card.flip .back-view{
+  transform: rotateY(0);
+}
+
+.game-details{
+  width: 100%;
+  padding: 20px 20px;
+  border-radius: 7px;
+  background: #ffffff;
+  height: calc(100% / 4 - 30px);
+  justify-content: space-evenly;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.game-details p{
+  font-size: 18px;
+  height: 17px;
+  padding-right: 185px;
+  border-right: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.game-details p span{
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+.game-details p b{
+  font-weight: 500;
+  font-weight: bold;
+}
+
+.game-details button{
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  color: #fff;
+  border-radius: 4px;
+  padding: 10px 11px;
+  background: #9a9c84;
+  transition: 0.3s ease;
+}
+
+.game-details button:hover{
+  color: #fff;
+  background: #CD8D7A;
+}
+
+@media screen and (max-width: 700px) {
+  .memory-cards{
+    height: 350px;
+    width: 350px;
+  }
+
+  .memory-card .front-view img{
+    max-width: 16px;
+  }
+
+  .memory-card .back-view img{
+    max-width: 40px;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  .memory-cards{
+    height: 300px;
+    width: 300px;
+  }
+
+  .memory-card .back-view img{
+    max-width: 35px;
+  }
+
+  .game-details{
+    margin-top: 10px;
+    padding: 0 15px;
+    height: calc(100% / 4 - 20px);
+  }
+
+  .game-details p{
+    height: 15px;
+    font-size: 17px;
+    padding-right: 13px;
+  }
+
+  .game-details button{
+    font-size: 13px;
+    padding: 5px 10px;
+    border: none;
+    color: #fff;
+    background: #9a9c84;
+  }
+}
+
+/* for the popup of memory game */
+/* Add this CSS to style your modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fefefe;
+  padding: 20px;
+  border: 1px solid #888;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+/* guess and earn */
+.hangmanbody {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  text-align: center;
+  width: 100%;
+  max-width: 100%;
+  background-size: cover;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  background-color: #cd8d7a;
+  overflow: hidden;
+}
+
+.game-container-image {
+  width: 300px; /* Adjust as necessary for your layout */
+  height: auto; /* This will maintain the aspect ratio */
+  animation: swing 2s infinite;
+}
+
+
+#hangman {
+  margin-bottom: 20px;
+  border: 1px solid #000;
+}
+
+#keyboard button {
+  margin: 10px;
+  padding: 20px;
+  width: 70px;
+  text-align: center;
+  background-color: white; /* Change the background color */
+  color:black; /* Change text color if needed */
+  font-weight: bolder;
+  border: 1px solid #ccc; /* Change border color if needed */
+}
+
+#keyboard button:hover{
+  background-color: lightgray;
+}
+
+#wordToGuess {
+  font-size: 24px;
+  letter-spacing: 10px;
+  padding: 50px;
+  justify-content: center;
+}
+
+#message {
+  color: red;
+}
+
+#reset {
+  justify-content: center;
+  padding: 10px 20px; /* Larger padding for a bigger button */
+  margin-top: 30px;
+  background-color: #9a9c84; /* A soft pink that complements your color scheme */
+  color: #fff; /* White text */
+  border: none; /* Remove the default border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-size: 18px; /* Larger font size */
+  font-weight: bold; /* Bold font weight */
+  cursor: pointer; /* Cursor changes to a hand icon on hover */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Smooth transition for hover effects */
+}
+
+#reset:hover {
+  background-color: #e9a09c; /* Slightly darker pink on hover */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover for a 'lifting' effect */
+}
+
+
+@keyframes swing {
+  0% { transform: rotate(-10deg); }
+  50% { transform: rotate(10deg); }
+  100% { transform: rotate(-10deg); }
+}

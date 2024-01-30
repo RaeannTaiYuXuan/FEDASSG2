@@ -67,6 +67,7 @@ header .navbar {
   gap: 30px; /* Set the gap between menu links */
 }
 
+
 .navbar a {
   padding-top: 8px;
   color: white; /* Set text color for menu links */
@@ -80,13 +81,6 @@ header .navbar {
 }
 
 /* this is for the new account  */
-#navbar-account a{
-  padding-top: 8px;
-  color: white; /* Set text color for menu links */
-  font-size: small; /* Set font weight for menu links */
-  text-decoration: none; /* Remove underline from menu links */
-  transition: 0.2s ease;
-}
 
 /* Mobile menu and hamburger button styling */
 #close-menu-btn {
@@ -2180,4 +2174,88 @@ form button {
   0% { transform: rotate(-10deg); }
   50% { transform: rotate(10deg); }
   100% { transform: rotate(-10deg); }
+}
+
+
+/* account jtml */
+/* Profile container styles */
+.profile-container {
+  text-align: center; /* Center text */
+  margin: 20px auto;
+  
+}
+
+.user-avatar {
+  margin: 0 auto; /* Center the avatar */
+  width: 20%;
+  height: 20%;
+   /* Adjust border thickness here */
+  overflow: hidden;
+}
+
+.avatar-image {
+  width: 100%;
+  height: auto;
+}
+
+.user-name {
+  margin-top: 0;
+  font-size: 30px;
+  text-transform: capitalize;
+}
+
+.user-email {
+  color: #777;
+  padding-bottom: 30px;
+  font-size: 15px;
+}
+
+/* Style for the points and vouchers */
+.profile-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid black;
+  padding: 20px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.points-container, .vouchers-container {
+  text-align: center;
+  margin: 0 20px; /* Add margin between points and vouchers */
+}
+
+.points-value, .vouchers-value {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+/* Style for game, shopping cart, and logout divs */
+.gameDiv {
+  border: 3px solid #ddd; /* Adjust border thickness here */
+  padding: 20px 15px;
+  margin: 20px 0; /* Adjust vertical margin */
+  width: calc(100% - 6px); /* Adjust for the border thickness */
+  box-sizing: border-box;
+}
+
+/* Center the text inside .gamesRect a and remove float */
+.gamesRect a {
+  display: block; /* Remove float and use block to center text */
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  margin: 0; /* Remove any default margins */
+  padding: 10px 0; /* Add some padding */
+}
+
+/* Ensure the .gamesRect a fills its container */
+.gamesRect {
+  width: 100%;
+}
+
+.gameDiv:hover{
+  background-color: #CD8D7A;
 }

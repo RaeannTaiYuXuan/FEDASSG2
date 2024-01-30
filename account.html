@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Afacad' rel='stylesheet'>
     <!-- favicon -->
+    <script src="api.js"></script>
 
 </head>
 <body class="">
@@ -31,11 +32,13 @@
         <li><a href="bags.html"style="color: black;">BAGS</a></li>
         <li><a href="shoe.html"style="color: black;">SHOES</a></li>
         <li><a href="Games.html"style="color: black;">GET $100</a></li>
-        <li><a href="Login.html"style="color: black;">CONTACT US</a></li>
-        <li><a href="register.html"style="color: black;">LOG IN </a></li>
-        <li><a href="register.html"style="color: black;">SIGN UP </a></li>
-        <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
-        <li><a href="#" id="navbar-account" style="display: none;"><i class="fa fa-slideshare" ></i></a></li>
+        <li><a href="ContactUs.html"style="color: black;">CONTACT US</a></li>
+        <li><a href="Login.html"style="color: black;" id="navbar-login">LOG IN </a></li>
+        <li><a href="Register.html"style="color: black;" id="navbar-signup">SIGN UP </a></li>
+        <li><a href="gamestoearnpoints.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
+        <li><a href="account.html" id="navbar-account" style="display: none; color: black;"><i class="fa fa-user" style="font-size: 15px;" ></i></a></li>
+        <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%; font-size: 15px;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
+        
       </ul>
       <span id="hamburger-btn" class="material-symbols-outlined">menu</span>
     </nav>
@@ -43,9 +46,51 @@
   </header>
 
 <br><br><br><br><br>
- <div id="logout-button">
-    <button>Log Out</button>
- </div>
+
+<div class="profile-container">
+  <div class="profile-header">
+      <div class="user-avatar">
+          <!-- This is where the user's avatar will go -->
+          <img src="images/usericon.png" alt="User Avatar" class="avatar-image">
+      </div>
+      <div class="user-info">
+          <!-- User's Name and Email -->
+          <h1 class="user-name">NAME</h1>
+          <p class="user-email">EMAIL ADDRESS</p>
+      </div>
+  </div>
+  <div class="profile-details">
+      <!-- Points and Vouchers -->
+      <div class="points-container">
+          <span class="points-value">0</span>
+          <p>SATURDAY POINTS</p>
+      </div>
+      <div class="vouchers-container">
+          <span class="vouchers-value">0</span>
+          <p>VOUCHERS</p>
+      </div>
+  </div>
+  
+  <div class="gameDiv">
+    <div class="gamesRect">
+      <a href="gamestoearnpoints.html"><i class="fa fa-gamepad"></i>&nbsp GAMES</a>
+    </div>
+  </div>
+
+  <div class="gameDiv">
+    <div class="gamesRect">
+      <a href="shoppingcart.html"><i class="fa fa-cart-shopping"></i>&nbsp SHOPPING CART</a>
+    </div>
+  </div>
+
+  <div class="gameDiv">
+    <div class="gamesRect">
+      <a href="index.html" id="logout-button"><i class="fa fa-gamepad"></i>&nbsp LOG OUT</a>
+    </div>
+  </div>
+
+</div>
+
 
 
 
@@ -82,5 +127,6 @@ INFERNO Copyright © 2024 Saturday.- All rights reserved
 
 <script src="Script.js"></script>
 <script src="api.js"></script>
+
 </body>
 </html>

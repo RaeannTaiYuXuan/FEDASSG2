@@ -14,6 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
           "user-Pwd": userPwd,
       };
 
+
+      localStorage.setItem('user-Email', userEmail);
+
       let settings = {
           method: "POST",
           headers: {
@@ -56,20 +59,64 @@ document.addEventListener("DOMContentLoaded", function () {
         const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
         const loginButton = document.getElementById('navbar-login');
         const signupButton = document.getElementById('navbar-signup');
+        const gamesMenuItem = document.getElementById('gamestoearn');
         const accountIcon = document.getElementById('navbar-account');
 
-        if (isLoggedIn) {
-            if (loginButton) loginButton.style.display = 'none';
-            if (signupButton) signupButton.style.display = 'none';
-            if (accountIcon) accountIcon.style.display = 'block';
-        } else {
+        if (!isLoggedIn) {
+            // Hide login and signup buttons
             if (loginButton) loginButton.style.display = 'block';
             if (signupButton) signupButton.style.display = 'block';
+
+            loginButton.style.padding = "3px";
+            signupButton.style.padding = "3px";
+
+            // Show the games menu item and account icon
+            if (gamesMenuItem) gamesMenuItem.style.display = 'none';
             if (accountIcon) accountIcon.style.display = 'none';
+        } else {
+            // Show login and signup buttons
+            if (loginButton) loginButton.style.display = 'none';
+            if (signupButton) signupButton.style.display = 'none';
+
+            // Hide the games menu item and account icon
+            if (gamesMenuItem) gamesMenuItem.style.display = 'block';
+            if (accountIcon) accountIcon.style.display = 'block';
+
+            gamesMenuItem.style.padding = "3px";
+            accountIcon.style.padding = "3px";
+            let navbar = document.getElementsByClassName("menu-links");
+            navbar.style.margin = "10px";
         }
     }
 
-    // Update the navbar immediately on page load
+    function updateUsernameOnAccountPage() {
+        const username = localStorage.getItem('user-Name');
+        const email = localStorage.getItem('user-Email'); 
+        const userNameElement = document.querySelector('.user-name');
+        const userEmailElement = document.querySelector('.user-email');
+
+        if (userNameElement) {
+            userNameElement.textContent = username || 'Guest';
+        }
+
+        if (userEmailElement) {
+            userEmailElement.textContent = email || 'email address';
+        }
+    }
+
+    updateUsernameOnAccountPage();
+
+    // Optional: Logout functionality
+    // Assuming you have a logout button with the ID 'logout-button'
+    const logoutButton = document.getElementById("logout-button");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            localStorage.removeItem('isLoggedIn');
+            updateNavbarBasedOnLogin(); // Update navbar to reflect logged out state
+            window.location.href = 'index.html'; // Redirect to home page or login page
+        });
+    }
+
     updateNavbarBasedOnLogin();
 
     // Login functionality
@@ -84,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Disable the login button
             document.getElementById("login-submit").disabled = true;
 
-            // Including data in the URL for a GET request
             let url = `https://fedassg2-9396.restdb.io/rest/accountdetails?q={"user-Name": "${encodeURIComponent(userName)}", "user-Pwd": "${encodeURIComponent(userPwd)}"}`;
 
             fetch(url, {
@@ -102,8 +148,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (data.length > 0) {
                     // Successful login
                     alert("Login successful! Redirecting to the home page.");
-                    localStorage.setItem('isLoggedIn', 'true'); // Store login state in local storage
-                    window.location.href = 'index.html'; // Redirect to home page
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('user-Name', userName);
+
+                    // Update the username on the account.html page after login
+                    updateUsernameOnAccountPage();
+
+                    window.location.href = 'index.html';
                 } else {
                     // Login failed
                     alert("Invalid username or password. Please try again.");
@@ -115,19 +166,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
             .finally(() => {
                 document.getElementById("login-submit").disabled = false;
-                document.getElementById("login-form").reset(); 
+                document.getElementById("login-form").reset();
             });
-        });
-    }
-
-    // Optional: Logout functionality
-    // Assuming you have a logout button with the ID 'logout-button'
-    const logoutButton = document.getElementById("logout-button");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            localStorage.removeItem('isLoggedIn');
-            updateNavbarBasedOnLogin(); // Update navbar to reflect logged out state
-            window.location.href = 'index.html'; // Redirect to home page or login page
         });
     }
 });

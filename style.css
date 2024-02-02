@@ -2066,6 +2066,7 @@ form button {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 .modal-content {
@@ -2258,4 +2259,246 @@ form button {
 
 .gameDiv:hover{
   background-color: #CD8D7A;
+}
+
+
+/* spinning the wheel game  */
+
+:root {
+	--size-wheel: 25rem;
+}
+main {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.msg {
+	min-height: 4rem;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-top: 0.5rem;
+	text-transform: capitalize;
+}
+
+.main ul {
+	position: relative;
+	padding: 0;
+	margin: 1rem 0;
+	width: var(--size-wheel);
+	height: var(--size-wheel);
+	border: 10px solid #cd8d7a;
+	border-radius: 50%;
+	list-style: none;
+	overflow: hidden;
+	transition: cubic-bezier(0.075, 0.8, 0.2, 1) 7s;
+}
+
+.main span {
+	display: inline-block;
+	position: relative;
+	padding: 0.5rem;
+}
+
+.main span::before {
+	content: '';
+	position: absolute;
+	top: 0rem;
+	left: 50%;
+	border-left: 2rem solid transparent;
+	border-right: 2rem solid transparent;
+	border-top: 4rem solid maroon;
+	z-index: 2;
+	transform: translateX(-50%);
+	animation: arrow ease-out 0.6s infinite;
+}
+
+@keyframes arrow {
+	0% {
+		top: -2rem;
+	}
+	80% {
+		top: 0;
+	}
+	100% {
+		top: -1.5rem;
+	}
+}
+
+.main span::after {
+	content: '';
+	width: 2rem;
+	height: 2rem;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-color: rgb(255, 255, 255);
+	border-radius: 50%;
+}
+.wheel-prize {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 50%;
+	height: 50%;
+	transform-origin: 0% 100%;
+}
+
+.text {
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+	left: -100%;
+	width: 200%;
+	height: 200%;
+	display: block;
+	text-align: center;
+	padding-top: 1.7rem;
+	font-weight: 600;
+	color: #fff;
+}
+
+.text > b {
+	display: inline-block;
+	word-break: break-word;
+	max-width: 20%;
+}
+
+.text-1 {
+	background-color: #EAC7C7;
+}
+
+.text-2 {
+	background-color: #cd8d7a;
+}
+
+.main {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.main button {
+	display: inline-block;
+	text-align: center;
+	border: 0;
+	background-color: #cd8d7a;
+	color: #fff;
+	font-size: 1.5rem;
+	border-radius: 4rem;
+	padding: 0.5rem 1.5rem;
+	width: auto;
+	cursor: pointer;
+	outline: none;
+}
+
+.main button:hover {
+	opacity: 0.8;
+}
+
+.nextBtn {
+  float: right;
+  background-color: #9a9c84;
+  padding: 10px 15px ;
+  border-radius: 15px;
+  margin-right: 30px;
+
+
+}
+.nextBtn a {
+  text-decoration: none;
+  color: white;
+  
+}
+
+.backBtn {
+  float: left;
+  background-color: #9a9c84;
+  padding: 10px 15px ;
+  border-radius: 15px;
+  margin-left: 30px;
+}
+
+.backBtn a{
+  text-decoration: none;
+  color: white;
+}
+
+/* Modal Container */
+.modalpop {
+  display: none; /* Hide modal by default */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Make sure this is above other content */
+}
+
+/* Modal Content */
+.modal-content {
+  display: flex; /* Use flexbox for layout */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  width: 900px;
+  height: 400px;
+  text-align: center; /* Center text for child elements */
+}
+
+/* Close Button */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 40px;
+  cursor: pointer;
+  color: #333;
+}
+
+/* Modal Flex Container */
+.modal-flex {
+  display: flex;
+  width: 100%; /* Take full width of the modal-content */
+  height: 100%; /* Take full height of the modal-content */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+/* Modal Image */
+.modal-image img {
+  width: auto; /* Adjust width automatically */
+  height: 100%; /* Full height of the container */
+  max-width: 50%; /* Maximum of half the container width */
+  border-radius: 50%; /* If you want rounded corners */
+}
+
+/* Modal Text */
+.modal-text {
+  width: 50%; /* Take up the remaining half */
+  padding-left: 20px; /* Space between image and text */
+  display: flex; /* Flex layout for internal alignment */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center children vertically */
+  align-items: flex-start; /* Align children to the start (left side) */
+}
+
+/* Subscribe Button */
+#subscribeButton {
+  margin-top: 20px; /* Space from the last text element */
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#subscribeButton:hover {
+  background-color: #45a049;
 }

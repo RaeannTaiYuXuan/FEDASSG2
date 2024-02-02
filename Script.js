@@ -42,30 +42,35 @@ function filterImages(category) {
 
 // end of filter gallery
 
-// Execute the following code when the window has fully loaded
-window.addEventListener("load", function () {
-  // Set a timeout function to execute after 2000 milliseconds (2 seconds)
-  setTimeout(function () {
-      // Open the popup
-      openPopup();
-  }, 2000);
+document.addEventListener("DOMContentLoaded", function () {
+  const subscribeModal = document.getElementById("subscribeModal");
+  const closeButton = document.querySelector(".close-button");
+  const subscribeButton = document.getElementById("subscribeButton");
+
+  // Show the modal on page load/refresh
+  showSubscribeModal();
+
+  closeButton.addEventListener("click", function () {
+      hideSubscribeModal();
+  });
+
+  subscribeButton.addEventListener("click", function () {
+      // Add your logic to redirect to another page
+      window.location.href = 'your_target_page.html';
+  });
+
+  function showSubscribeModal() {
+      // Check if the modal should be displayed (e.g., using a cookie)
+      // You can implement logic to show it based on user preferences
+
+      // For now, let's show the modal unconditionally
+      subscribeModal.style.display = "block";
+  }
+
+  function hideSubscribeModal() {
+      subscribeModal.style.display = "none";
+  }
 });
-
-// Add a click event listener to the element with id 'close'
-document.querySelector("#close").addEventListener("click", function () {
-  // Close the popup when the 'close' element is clicked
-  closePopup();
-});
-
-// Function to open the popup
-function openPopup() {
-  document.querySelector(".popup").style.display = "block";
-}
-
-// Function to close the popup
-function closePopup() {
-  document.querySelector(".popup").style.display = "none";
-}
 
 
 
@@ -129,199 +134,7 @@ window.addEventListener('scroll', function() {
 // this is for the shopping cart thingy
 // shoppingcart.js
 
-document.addEventListener('DOMContentLoaded', function () {
-  loadCartState();
-});
 
-function loadCartState() {
-  var items = getCartItems();
-  items.forEach(function (item) {
-    renderCartItem(item);
-  });
-  updateCartTotals();
-}
-
-function renderCartItem(item) {
-  var newRow = document.createElement('tr');
-  var imageCell = document.createElement('td');
-  var imageElement = document.createElement('img');
-  imageElement.src = item.image;
-  imageElement.alt = item.name;
-  imageElement.style.width = '50px'; // Adjust the image size as needed
-  imageCell.appendChild(imageElement);
-
-  var nameCell = document.createElement('td');
-  nameCell.textContent = item.name;
-
-  var priceCell = document.createElement('td');
-  priceCell.textContent = '$' + item.price.toFixed(2);
-
-  var quantityCell = document.createElement('td');
-  quantityCell.textContent = item.quantity;
-
-  var incrementCell = createQuantityButton('+', function () {
-    item.quantity++;
-    quantityCell.textContent = item.quantity;
-    updateCartTotals();
-  });
-
-  var decrementCell = createQuantityButton('-', function () {
-    if (item.quantity > 1) {
-      item.quantity--;
-      quantityCell.textContent = item.quantity;
-      updateCartTotals();
-    }
-  });
-
-  var deleteCell = document.createElement('td');
-  var deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Remove';
-  deleteButton.addEventListener('click', function () {
-    deleteCartItem(newRow);
-  });
-  deleteCell.appendChild(deleteButton);
-
-  newRow.appendChild(imageCell);
-  newRow.appendChild(nameCell);
-  newRow.appendChild(priceCell);
-  newRow.appendChild(quantityCell);
-  newRow.appendChild(incrementCell);
-  newRow.appendChild(decrementCell);
-  newRow.appendChild(deleteCell);
-
-  document.getElementById('carttable').appendChild(newRow);
-}
-
-function updateCartTotals() {
-  var items = document.querySelectorAll('#carttable tr');
-  var total = 0;
-  var itemCount = 0;
-
-  items.forEach(function (item) {
-    var price = parseFloat(item.cells[2].textContent.replace('$', ''));
-    var quantity = parseInt(item.cells[3].textContent);
-    total += price * quantity;
-    itemCount += quantity;
-  });
-
-  document.getElementById('itemsquantity').textContent = itemCount;
-  document.getElementById('total').textContent = total.toFixed(2);
-}
-
-function createQuantityButton(text, clickHandler) {
-  var cell = document.createElement('td');
-  var button = document.createElement('button');
-  button.textContent = text;
-  button.addEventListener('click', clickHandler);
-  cell.appendChild(button);
-  return cell;
-}
-
-function deleteCartItem(row) {
-  var itemName = row.cells[1].textContent; // Assuming the name is in the second cell
-  removeFromLocalStorage(itemName);
-
-  // Remove the row from the table
-  row.remove();
-
-  // Update cart totals after removing the item
-  updateCartTotals();
-}
-
-function getCartItems() {
-  var cartItems = localStorage.getItem('cart');
-  return cartItems ? JSON.parse(cartItems) : [];
-}
-
-function removeFromLocalStorage(itemName) {
-  // Retrieve existing cart items from localStorage
-  var cartItems = localStorage.getItem('cart');
-  var items = cartItems ? JSON.parse(cartItems) : [];
-
-  // Find the index of the item to remove
-  var index = items.findIndex(function (item) {
-    return item.name === itemName;
-  });
-
-  // If the item is found, remove it from the array
-  if (index !== -1) {
-    items.splice(index, 1);
-
-    // Save the updated items to localStorage
-    localStorage.setItem('cart', JSON.stringify(items));
-  }
-}
-
-function addToCart(name, price, image) {
-  var item = { name: name, price: price, image: image, quantity: 1 };
-
-  // Retrieve existing cart items from localStorage
-  var cartItems = localStorage.getItem('cart');
-  var items = cartItems ? JSON.parse(cartItems) : [];
-
-  // Check if the item is already in the cart
-  var existingItem = items.find(function (existingItem) {
-      return existingItem.name === item.name;
-  });
-
-  if (existingItem) {
-      // If the item is already in the cart, just increment its quantity
-      existingItem.quantity++;
-  } else {
-      // If the item is not in the cart, add it to the items array
-      items.push(item);
-  }
-
-  // Save the updated items to localStorage
-  localStorage.setItem('cart', JSON.stringify(items));
-}
-
-document.getElementById('checkout').addEventListener('click', function () {
-  // Get the cart items from local storage
-  var cartItems = getCartItems();
-
-  // Check if the cart is not empty
-  if (cartItems.length > 0) {
-    alert("Log in Now to get 100 points ")
-
-    var totalCost = calculateTotalCost(cartItems);
-    alert('Total Cost:', totalCost);
-
-    // Optionally, clear the cart after checkout
-    clearCart();
-  } else {
-    // Display a message to the user that the cart is empty or handle the checkout of an empty cart
-    alert('The cart is empty. Cannot proceed with checkout.');
-  }
-});
-
-function calculateTotalCost(items) {
-  // Calculate the total cost based on the items in the cart
-  var total = 0;
-  items.forEach(function (item) {
-    total += item.price * item.quantity;
-  });
-  return total.toFixed(2);
-}
-
-function clearCart() {
-  // Clear the cart in both the table and local storage
-  localStorage.removeItem('cart');
-  updateCartTable(); // Assuming you have a function to update the cart table visually
-  updateCartTotals(); // Update cart totals after clearing the cart
-}
-
-// Assuming you have a function to update the cart table visually
-function updateCartTable() {
-  var cartTable = document.getElementById('carttable');
-  // Remove all rows from the table
-  while (cartTable.firstChild) {
-    cartTable.removeChild(cartTable.firstChild);
-  }
-
-  // Reload the cart state after clearing the table
-  loadCartState();
-}
 
 
 

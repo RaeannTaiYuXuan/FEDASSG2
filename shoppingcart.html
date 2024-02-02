@@ -100,6 +100,13 @@
 </div>
 
 
+<div class="modal" id="popupModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p id="modalMessage"></p>
+  </div>
+</div>
+
 
 
 <!-- footer  -->
@@ -129,124 +136,10 @@ INFERNO Copyright © 2024 Saturday.- All rights reserved
 </footer>
 
 <!-- Your existing shoppingcart.html code ... -->
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  loadCartState();
-});
-
-function loadCartState() {
-  var items = getCartItems();
-  items.forEach(function (item) {
-    renderCartItem(item);
-  });
-  updateCartTotals();
-}
-
-function renderCartItem(item) {
-  var newRow = document.createElement('tr');
-  var imageCell = document.createElement('td');
-  var imageElement = document.createElement('img');
-  imageElement.src = item.image;
-  imageElement.alt = item.name;
-  imageElement.style.width = '50px'; // Adjust the image size as needed
-  imageCell.appendChild(imageElement);
-
-  var nameCell = document.createElement('td');
-  nameCell.textContent = item.name;
-
-  var priceCell = document.createElement('td');
-  priceCell.textContent = '$' + item.price.toFixed(2);
-
-  var quantityCell = document.createElement('td');
-  quantityCell.textContent = item.quantity;
-
-  var incrementCell = createQuantityButton('+', function () {
-    item.quantity++;
-    quantityCell.textContent = item.quantity;
-    updateCartTotals();
-  });
-
-  var decrementCell = createQuantityButton('-', function () {
-    if (item.quantity > 1) {
-      item.quantity--;
-      quantityCell.textContent = item.quantity;
-      updateCartTotals();
-    }
-  });
-
-  var deleteCell = document.createElement('td');
-  var deleteButton = document.createElement('button');
-  deleteButton.textContent = 'Remove';
-  deleteButton.addEventListener('click', function () {
-    deleteCartItem(newRow);
-  });
-  deleteCell.appendChild(deleteButton);
-
-  newRow.appendChild(imageCell);
-  newRow.appendChild(nameCell);
-  newRow.appendChild(priceCell);
-  newRow.appendChild(quantityCell);
-  newRow.appendChild(incrementCell);
-  newRow.appendChild(decrementCell);
-  newRow.appendChild(deleteCell);
-
-  document.getElementById('carttable').appendChild(newRow);
-}
-
-function updateCartTotals() {
-  var items = document.querySelectorAll('#carttable tr');
-  var total = 0;
-  var itemCount = 0;
-
-  items.forEach(function (item) {
-    var price = parseFloat(item.cells[2].textContent.replace('$', ''));
-    var quantity = parseInt(item.cells[3].textContent);
-    total += price * quantity;
-    itemCount += quantity;
-  });
-
-  document.getElementById('itemsquantity').textContent = itemCount;
-  document.getElementById('total').textContent = total.toFixed(2);
-}
-
-function createQuantityButton(text, clickHandler) {
-  var cell = document.createElement('td');
-  var button = document.createElement('button');
-  button.textContent = text;
-  button.addEventListener('click', clickHandler);
-  cell.appendChild(button);
-  return cell;
-}
-
-function deleteCartItem(row) {
-  var itemName = row.cells[0].textContent; // Assuming the name is in the second cell
-  var items = getCartItems();
-
-  // Find the index of the item to be removed in the array
-  var itemIndex = items.findIndex(function (item) {
-    return item.name === itemName;
-  });
-
-  if (itemIndex !== -1) {
-    // Remove the item from the array
-    items.splice(itemIndex, 1);
-
-    // Save the updated items back to local storage
-    saveCartItems(items);
-  }
-
-  // Remove the row from the HTML
-  row.remove();
-  updateCartTotals();
-}
-
-function getCartItems() {
-  var cartItems = localStorage.getItem('cart');
-  return cartItems ? JSON.parse(cartItems) : [];
-}
-</script>
 
 <script src="Script.js"></script>
 <script src="api.js"></script>
+<script src="shoppingcart.js"></script>
+<script src="points.js"></script>
 </body>
 </html>

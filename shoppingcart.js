@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
+    displayUserPoints();
     loadCartState();
+
 });
 
 function loadCartState() {
@@ -130,40 +132,7 @@ function addToCart(name, price, image) {
     localStorage.setItem('cart', JSON.stringify(items));
 }
 
-document.getElementById('checkout').addEventListener('click', function () {
-    var cartItems = getCartItems();
-    var userToken = localStorage.getItem('userToken'); // Get the user token
 
-    if (cartItems.length > 0) {
-        if (userToken) {
-            var totalCost = calculateTotalCost(cartItems);
-            var points = totalCost * 10;
-
-            sendPointsToServer(points, userToken); // Pass userToken to the function
-
-            openModal('You earned ' + points + ' points for this purchase!');
-            clearCart();
-        } else {
-            openModal('Please login before checking out.');
-        }
-    } else {
-        openModal('The cart is empty, Add items before checking out');
-    }
-});
-
-
-function openModal(message) {
-    var modal = document.getElementById('popupModal');
-    var modalMessage = document.getElementById('modalMessage');
-    modalMessage.textContent = message;
-    modal.style.display = 'block';
-}
-
-function closeModal() {
-    var modal = document.getElementById('popupModal');
-    modal.style.display = 'none';
-    redirect();
-}
 
 function redirect() {
     window.location.href = 'index.html';
@@ -197,58 +166,118 @@ function updateCartTable() {
     loadCartState();
 }
 
-async function sendPointsToServer(points, userToken) {
-    const APIKEY = '65b241fe7307821d4f6708b6';
-    const apiKeyHeader = 'x-apikey';
+
+//start of checkout
+
+function updatePointsInLocalStorage(points) {
+    var currentPoints = parseInt(localStorage.getItem('user-Points') || '0');
+    var newPointsTotal = currentPoints + points;
+    localStorage.setItem('user-Points', newPointsTotal.toString());
+}
+
+function openModal(message) {
+    var modal = document.getElementById('popupModal');
+    var modalMessage = document.getElementById('modalMessage');
+    modalMessage.textContent = message;
+    modal.style.display = 'block';
+}
+
+function closeModal() {
+    var modal = document.getElementById('popupModal');
+    modal.style.display = 'none';
+    redirect();
+}
+
+
+function displayUserPoints() {
+    var userPointsDisplay = document.getElementsByClassName('stat-label');
+    var points = localStorage.getItem('user-Points') || '0';
+    userPointsDisplay.textContent = `${points}`;
+}
+
+
+//start of the api (hope it works)
+// Checkout event listener
+document.getElementById('checkout').addEventListener('click', async function () {
+    var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    var userName = localStorage.getItem('user-Name');
+    var cartItems = getCartItems();
+
+    if (!isLoggedIn || !userName) {
+        openModal('Please log in before checking out.');
+        return;
+    }
+
+    if (cartItems.length === 0) {
+        openModal('The cart is empty. Add items before checking out.');
+        return;
+    }
+
+    var totalCost = calculateTotalCost(cartItems);
+    var pointsEarned = totalCost * 10; // $1 = 10 points
 
     try {
-        // Fetch the user record based on 'userToken'
-        const queryURL = `https://fedassg2-9396.restdb.io/rest/accountdetails?q={"user-Name": "${userToken}"}`;
+        await updateUserPoints(pointsEarned, userName);
+        openModal(`You earned ${pointsEarned} points for this purchase!`);
+        clearCart();
+    } catch (error) {
+        console.error('Error during checkout:', error);
+        openModal('There was an issue during the checkout process. Please try again.');
+    }
+});
 
-        const getUserResponse = await fetch(queryURL, {
-            method: 'GET',
+// Function to update user points in the database
+async function updateUserPoints(pointsEarned, userName) {
+    const userEmail = localStorage.getItem("user-Email");
+    const userPwd = localStorage.getItem("user-Pwd");
+
+    const APIKEY = "65bd0b1da15ddef163c3c658";
+    const queryURL = `https://saturdayuser-aae1.restdb.io/rest/customerdetails?q={"user-Name": "${userName}"}`;
+
+    const getUserResponse = await fetch(queryURL, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "x-apikey": APIKEY
+        }
+    });
+
+    const users = await getUserResponse.json();
+
+    if (users.length > 0) {
+        const user = users[0];
+        const updatedPoints = (user['user-Points'] || 0) + pointsEarned;
+
+        const updateURL = `https://saturdayuser-aae1.restdb.io/rest/customerdetails/${user._id}`;
+
+        
+
+        const updateResponse = await fetch(updateURL, {
+            method: "PUT",
             headers: {
-                'Content-Type': 'application/json',
-                [apiKeyHeader]: APIKEY,
+                "Content-Type": "application/json",
+                "x-apikey": APIKEY
             },
+            body: JSON.stringify({
+                "user-Name": userName,
+                "user-Email": userEmail,
+                "user-Pwd": userPwd,
+                "user-Points": updatedPoints
+            })
+            
         });
 
-        const users = await getUserResponse.json();
-
-        if (users.length > 0) {
-            const user = users[0];
-            const updatedPoints = (user["user-Points"] || 0) + points;
-
-            // Update the user record with the new points
-            const updateURL = `https://fedassg2-9396.restdb.io/rest/accountdetails/${user._id}`;
-            let datajson = {
-                "user-Points": updatedPoints,
-            };
-
-            const updateResponse = await fetch(updateURL, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                    [apiKeyHeader]: APIKEY,
-                },
-                body: JSON.stringify(datajson),
-            });
-
-            if (!updateResponse.ok) {
-                throw new Error(`HTTP error! status: ${updateResponse.status}`);
-            }
-
-            const updatedUser = await updateResponse.json();
-            console.log('Points updated:', updatedUser);
-
-            // Ensure local storage is updated here if needed
-            localStorage.setItem('userPoints', updatedUser["user-Points"]);
-            displayUserPoints();
-        } else {
-            throw new Error('User not found.');
+        if (!updateResponse.ok) {
+            throw new Error(`HTTP error! status: ${updateResponse.status}`);
         }
-    } catch (error) {
-        console.error('Error updating points:', error);
-        throw error;
+
+        const updatedUser = await updateResponse.json();
+        console.log("Points updated:", updatedUser);
+
+        // Update local storage
+        localStorage.setItem('user-Points', updatedUser['user-Points']);
+        displayUserPoints(); // Update the points display on the page
+    } else {
+        throw new Error('User not found.');
     }
 }

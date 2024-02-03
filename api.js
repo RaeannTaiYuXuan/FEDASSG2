@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const APIKEY = "65b241fe7307821d4f6708b6";
+    const APIKEY = "65bd0b1da15ddef163c3c658";
 
 
    
@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let userName = document.getElementById("user-Name").value;
         let userEmail = document.getElementById("user-Email").value;
         let userPwd = document.getElementById("user-Pwd").value;
-        let userPoints = 100; //by default because theu sign up 
+        let userPoints = 0; //by default because theu sign up 
        
   
         let jsondata = {
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   
   
         localStorage.setItem('user-Email', userEmail);
+        
   
         let settings = {
             method: "POST",
@@ -38,10 +39,17 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         };
   
-        fetch("https://fedassg2-9396.restdb.io/rest/accountdetails", settings)
+        fetch("https://saturdayuser-aae1.restdb.io/rest/customerdetails", settings)
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+
+                const userPoints = data.points !== undefined ? data.points : 0;
+                localStorage.setItem("userName", userName);
+                localStorage.setItem("userEmail", userEmail);
+                localStorage.setItem("userPwd", userPwd);
+                localStorage.setItem("userPoints", userPoints);
+
   
                 // Display alert and redirect to login page
                 alert("Account created successfully! You will be redirected to the login page.");
@@ -60,20 +68,11 @@ document.addEventListener("DOMContentLoaded", function () {
   
   // for login
   document.addEventListener("DOMContentLoaded", function () {
-    const APIKEY = "65b241fe7307821d4f6708b6";
-
-    function saveToken(token, userEmail,userName,userPoints) {
-        // Save the token and email to localStorage
-        localStorage.setItem('userToken', token);
-        localStorage.setItem('user-Email', userEmail);
-        localStorage.setItem('user-Name',userName);
-        localStorage.setItem('user-Points',userPoints);
-    }
-    
+    const APIKEY = "65bd0b1da15ddef163c3c658";
 
     function isLoggedIn() {
         // Check if the user is logged in based on the presence of a token
-        return localStorage.getItem('isLoggedIn') === 'true' && localStorage.getItem('userToken');
+        return localStorage.getItem('isLoggedIn') === 'true';
     }
 
     // Function to update the navbar based on login state
@@ -84,13 +83,13 @@ document.addEventListener("DOMContentLoaded", function () {
         const gamesMenuItem = document.getElementById('gamestoearn');
         const accountIcon = document.getElementById('navbar-account');
 
+        loginButton.style.padding = "3px";
+        signupButton.style.padding = "3px";
+
         if (!isLoggedInUser) {
             // Hide login and signup buttons
             if (loginButton) loginButton.style.display = 'block';
             if (signupButton) signupButton.style.display = 'block';
-
-            loginButton.style.padding = "3px";
-            signupButton.style.padding = "3px";
 
             // Show the games menu item and account icon
             if (gamesMenuItem) gamesMenuItem.style.display = 'none';
@@ -107,13 +106,13 @@ document.addEventListener("DOMContentLoaded", function () {
             gamesMenuItem.style.padding = "3px";
             accountIcon.style.padding = "3px";
             let navbar = document.getElementsByClassName("menu-links");
-            navbar.style.margin = "10px";
+
         }
     }
 
     function updateUsernameOnAccountPage() {
         const username = localStorage.getItem('user-Name');
-        const email = localStorage.getItem('user-Email'); 
+        const email = localStorage.getItem('user-Email');
         const userNameElement = document.querySelector('.user-name');
         const userEmailElement = document.querySelector('.user-email');
 
@@ -130,16 +129,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Optional: Logout functionality
     const logoutButton = document.getElementById("logout-button");
-if (logoutButton) {
-    logoutButton.addEventListener("click", function () {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.removeItem('user-Name');
-        localStorage.removeItem('user-Email');
-        localStorage.removeItem('userToken');
-        updateNavbarBasedOnLogin(); // Update navbar to reflect logged out state
-        window.location.href = 'index.html'; // Redirect to home page or login page
-    });
-}
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('user-Name');
+            localStorage.removeItem('user-Email');
+            
+            updateNavbarBasedOnLogin(); // Update navbar to reflect logged out state
+            window.location.href = 'index.html'; // Redirect to home page or login page
+        });
+    }
 
     updateNavbarBasedOnLogin();
 
@@ -151,12 +150,11 @@ if (logoutButton) {
 
             let userName = document.getElementById("user-Name").value;
             let userPwd = document.getElementById("user-Pwd").value;
-            
 
             // Disable the login button
             document.getElementById("login-submit").disabled = true;
 
-            let url = `https://fedassg2-9396.restdb.io/rest/accountdetails?q={"user-Name": "${encodeURIComponent(userName)}", "user-Pwd": "${encodeURIComponent(userPwd)}"}`;
+            let url = `https://saturdayuser-aae1.restdb.io/rest/customerdetails?q={"user-Name": "${encodeURIComponent(userName)}", "user-Pwd": "${encodeURIComponent(userPwd)}"}`;
 
             fetch(url, {
                 method: "GET",
@@ -174,17 +172,13 @@ if (logoutButton) {
                     // Successful login
                     alert("Login successful! Redirecting to the home page.");
 
-                    // Assuming the server responds with a token upon successful login
-                    const token = data[0].token;
-                    const userEmail = data[0]["user-Email"];
-                    const userName = data[0]["user-Name"];
-                    const userPoints = data[0]['user-Points']; // Change this according to your server response
-
-                    saveToken(token, userEmail,userName,userPoints);
-                    localStorage.setItem('isLoggedIn', 'true');
-                    localStorage.setItem('user-Name', userName);
-                    localStorage.setItem('user-Email',userEmail);
-                    localStorage.setItem('user-Points',userPoints);
+                const user = data[0];
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('user-Name', user["user-Name"]);
+                console.log('Set user name:', localStorage.getItem('user-Name'));
+                localStorage.setItem('user-Email', user["user-Email"]);
+                localStorage.setItem("userPoints", user.userPoints); 
+                localStorage.setItem("user-Pwd",user["user-Pwd"]);
 
 
                     updateUsernameOnAccountPage();
@@ -205,7 +199,10 @@ if (logoutButton) {
             });
         });
     }
-
     
+
 });
+
+
+
 

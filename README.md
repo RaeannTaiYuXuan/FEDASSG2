@@ -29,20 +29,14 @@ For index page, I have a navigation bar that will become transparent when you sc
 Features
 1. Letting user to filter the style to see the products they want. 
 2. User will be able to navigate to the game page to play three different types of games to earn points and vouchers. 
-3. Users will be able to add their items into the cart at the bottom of every page in the NEWIN,BAGS and SHOES html page only. 
+3. Users will be able to add their items into the cart and checkout with a popup message of how many points we get in total.
+4. Wheel It - where users get a limit of 5 times and have to wait for 24hrs to reset the number of spins, users will also get vouchers and points through the wheel in random. 
+5. Shoes Memories - it is a memory card game where users will be times for a limit of 40s and if they sucesfully win the game they will be able to get points, vouchers or sometimes they will get nothing. but if you lose, there will be a popup message saying that try again. 
+6. Word Wizard - a game where is inspired by hangman where there is a random words that are related to our website, there is also a time limit of 30 seconds and a mistake limit of 6. so if you go over the time limit or hit 6 mistake , it will hide the keyboard and display you lost. if users are able to guess the hangman name they will earn points or voucher in random. 
+7. For sign up, users will be able to sign up and when success they will be redirected to the login page to login and thn when sucessful they will be redirected to the index page and the navbar of signup and login  will be hidden and the account,game and shopping cart logo will appear for easy navigation for users wanting to earn points ( this is because users bave to sign up before they can purchase or checkout anything from this shop). 
 
 
-Existing Features
-Feature 1 - allow user to click on selected style or options to see the product they desire. 
 
-Feature 2 - allow user to choose among three games / all games to earn points and voucher. 
-
-Feature 3 - allow user to add items in the shopping cart and checkout. 
-
-Features Left to Implement
-Feature 4 - need to make the log in page connected to my restDB and my sign up page to post the value to my database. 
-
-Feature 5 - when log in , will have an Account page appear in the nav bar and will be able to log out. 
 
 
 **Technologies Used**

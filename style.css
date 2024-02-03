@@ -104,67 +104,7 @@ header .navbar {
 
 /* for mobile */
 @media (max-width: 600px) {
-  header {
-    padding: 10px;
-  }
-
-  header.show-mobile-menu::before {
-    content: "";
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(5px); /* make sure when the menu bar clicked background will turn blur  */
-  }
-
-  .navbar::after{
-    width: 100%;
-  }
-
-  .navbar {
-    z-index: 1000; /* adjustment for the nav bar */
-  }
-
-  .navbar .logo {
-    font-size: 1.7rem;
-  }
-
-    
-  #hamburger-btn, #close-menu-btn {
-    display: flex;
-  }
-
-  .navbar .menu-links {
-    position: fixed;  /*it will not move */
-    top: 0;
-    left: -250px;
-    width: 250px;
-    height: 100vh;
-    background: white;
-    flex-direction: column;
-    padding: 70px 40px 0;
-    transition: left 0.2s ease;
-    
-  }
-
-  header.show-mobile-menu .navbar .menu-links {
-    left: 0;
-  }
-
-  .navbar a {
-    color: #D2B48C;
-  }
-  .navbar a:hover {
-    color: #023030;
-  }
-
-  
-}
-
-
-@media (max-width: 768px) {
-  header {
+  header .navbar {
     padding: 10px;
   }
 
@@ -186,8 +126,8 @@ header .navbar {
     font-size: 1.7rem;
   }
 
-    
-  #hamburger-btn, #close-menu-btn {
+  #hamburger-btn,
+  #close-menu-btn {
     display: flex;
   }
 
@@ -201,7 +141,6 @@ header .navbar {
     flex-direction: column;
     padding: 70px 40px 0;
     transition: left 0.2s ease;
-    
   }
 
   header.show-mobile-menu .navbar .menu-links {
@@ -211,15 +150,14 @@ header .navbar {
   .navbar a {
     color: #D2B48C;
   }
+
   .navbar a:hover {
     color: #023030;
   }
-
 }
-
 
 @media (max-width: 1024px) {
-  header {
+  header .navbar {
     padding: 10px;
   }
 
@@ -241,8 +179,8 @@ header .navbar {
     font-size: 1.7rem;
   }
 
-    
-  #hamburger-btn, #close-menu-btn {
+  #hamburger-btn,
+  #close-menu-btn {
     display: flex;
   }
 
@@ -256,7 +194,6 @@ header .navbar {
     flex-direction: column;
     padding: 70px 40px 0;
     transition: left 0.2s ease;
-    
   }
 
   header.show-mobile-menu .navbar .menu-links {
@@ -266,11 +203,10 @@ header .navbar {
   .navbar a {
     color: #D2B48C;
   }
+
   .navbar a:hover {
     color: #023030;
   }
-
-
 }
 /* for laptop 1440px */ 
 
@@ -333,8 +269,32 @@ header .navbar {
     height: 300px; /* Adjust the height for mobile screens */
   }
 
+  .mySlides {
+    height: 100%; /* Ensure slides take the full height on mobile */
+  }
+
   .prev, .next {
     font-size: 18px; /* Adjust the font size for mobile screens */
+    padding: 10px; /* Adjust padding for better mobile touch experience */
+  }
+
+  .mySlides img {
+    height: auto; /* Make images responsive on mobile */
+  }
+}
+
+@media (max-width: 1024px) {
+  .slideshow-container {
+    height: 300px; /* Adjust the height for mobile screens */
+  }
+
+  .mySlides {
+    height: 100%; /* Ensure slides take the full height on mobile */
+  }
+
+  .prev, .next {
+    font-size: 18px; /* Adjust the font size for mobile screens */
+    padding: 10px; /* Adjust padding for better mobile touch experience */
   }
 
   .mySlides img {
@@ -364,6 +324,40 @@ header .navbar {
 video {
   border: 6px solid #F4D9C6;
 
+}
+
+@media (max-width: 600px) {
+  .middle {
+    margin-top: -60px; /* Adjust margin for mobile */
+  }
+
+  .middle h1 {
+    padding: 20px; /* Adjust padding for mobile */
+  }
+
+  .middle p {
+    padding: 10px; /* Adjust padding for mobile */
+    font-size: 13px; /* Adjust font size for mobile */
+  }
+
+  video {
+    border: 3px solid #F4D9C6; /* Adjust border for mobile */
+  }
+}
+
+@media (max-width: 1024px) {
+  .middle {
+    margin-top: -60px; /* Adjust margin for desktop */
+  }
+
+  .middle h1 {
+    padding: 30px; /* Adjust padding for desktop */
+  }
+
+  .middle p {
+    padding: 15px; /* Adjust padding for desktop */
+    font-size: 14px; /* Adjust font size for desktop */
+  }
 }
 
 /* video bar */
@@ -405,6 +399,35 @@ p {
   font-size: 12px;
   color: #666;
 }
+
+
+@media (max-width: 600px) {
+  .containerVid {
+    flex-direction: column; /* Change to a column layout for mobile */
+    height: auto; /* Adjust height for mobile */
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .column {
+    flex: none; /* Reset flex property for each column */
+    width: 100%; /* Make each column full width on mobile */
+    text-align: center;
+    padding: 10px; /* Adjust padding for mobile */
+  }
+
+  .column:not(:first-child):before {
+    content: none; /* Remove the vertical line on mobile */
+  }
+
+  h1 {
+    font-size: 18px; /* Adjust font size for mobile */
+  }
+
+  p {
+    font-size: 14px; /* Adjust font size for mobile */
+  }
+}
+
 
 /* 4 product gallery */
 
@@ -461,6 +484,22 @@ p {
   font-size: large;
 }
 
+@media (max-width: 600px) {
+  .galleryMiddle {
+    flex-direction: column;
+    align-items: center;
+    
+
+  }
+
+  .product {
+    flex-basis: 80%;
+    width: 50%;
+    height: 50%;
+     /* Adjust the width for smaller screens */
+  }
+}
+
 /* our collections output */
 .wholecollection {
   display: flex;
@@ -515,27 +554,17 @@ p {
 }
 
 
-/* view all button */
-/* .ViewAllBtn {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  padding: 20px;
-  margin: 50px ;
-}
+@media (max-width: 600px) {
+  .wholecollection {
+    flex-direction: column;
+    align-items: center;
+  }
 
-/* .ViewAllBtn a {
-  display: inline-block;
-  text-decoration: none;
-  margin-top:20px;
-  padding: 10px;
-  color: #023030;
-  background-color: #9a9c84;
-  
-  text-align: center;
-  border-radius: 10px;
-  font-weight: bold;
-} */ 
+  .containerCard {
+    width: 90%; /* Adjust the width for smaller screens */
+    margin: 20px 0;
+  }
+}
 
 
 /* New footer terying out */
@@ -622,285 +651,10 @@ p {
 
 
 
- /*contact */
-.containerC {
-  display:flex;
-  justify-content: center;
-}
-.column h1 {
-  text-align: center;
-  font-weight: bold;
-}
-.column h4 {
-  text-align: center;
-  font-weight: bold;
-}
 
-.textmessage a {
-  display: block;
-  text-align: center;
-  color: #fff;
-  letter-spacing: 1px;
-  border: none;
-  background: #9a9c84;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding: 15px 20px;
-  margin: 10px;
-  font-size: 17px;
-  font-weight: bold;
-  color: #333;
-  border: 1.5px solid #C7BEBE;
-  border-bottom-width: 2.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-  text-decoration: none;
 
-}
-.column p {
-  text-align: center;
-  font-size: 15px;
-}
-.column label {
-  margin: 10px;
-  font-weight: bold;
-}
 
-input[type=text], select, textarea, input[type=email], input[type=password] {
-  height: 100%;
-  width: 100%;
-  outline: none;
-  margin: 10px;
-  padding: 15px 20px;
-  font-size: 17px;
-  font-weight: 400;
-  color: #333;
-  border: 1.5px solid #C7BEBE;
-  border-bottom-width: 2.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
 
-input[type=submit] {
-  background-color: #7a816e;
-  color: #f9f3e7;
-  padding: 12px 20px;
-  border: none;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
-  outline: none;
-  margin: 10px;
-  padding: 15px 20px;
-  font-size: 17px;
-  font-weight: 400;
-  color: #333;
-  border: 1.5px solid #C7BEBE;
-  border-bottom-width: 2.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-input[type=submit]:hover {
-  background-color: #c9beb4;
-}
-
-.input-box.button button{
-  color: #fff;
-  letter-spacing: 1px;
-  border: none;
-  background: #9a9c84;
-  cursor: pointer;
-  height: 100%;
-  width: 100%;
-  outline: none;
-  padding: 15px 20px;
-  margin: 10px;
-  font-size: 17px;
-  font-weight: bold;
-  color: #333;
-  border: 1.5px solid #C7BEBE;
-  border-bottom-width: 2.5px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-.input-box.button button:hover{
-  background: #c9beb4;
-  
-}
-
-.column img {
-  width: 100%;
-  height: 700px;
-}
-
-/* Style the container/contact section */
-.container {
-  border-radius: 5px;
-  background-color: #f9f3e7;
-  padding: 10px;
-}
-
-/* Create two columns that float next to eachother */
-.column {
-  float: left;
-  width: 50%;
-  margin-top: 6px;
-  padding: 20px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-form .policy{
-  display: flex;
-  align-items: center;
-  margin: 10px;
-}
-form h3{
-  color: #707070;
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 10px;
-}
-.input-box input:focus,
-.input-box input:valid{
-  border-color: #9a9c84;
-}
-
-#textField {
-  text-align: center;
-   font-weight: bold;
-}
-
-form .text h3{
-  color: #333;
-  width: 100%;
-  text-align: center;
-  font-size: 17px;
- }
- form .text h3 a{
-   color: #023030;
-   text-decoration: none;
- }
- form .text h3 a:hover{
-   text-decoration: underline;
- }
-/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-  .column, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-  img{
-    width: 100%;
-  }
-}
-
-/* tablet */
-@media screen and (max-width: 768px) {
-  .column, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-  img{
-    width: 100%;
-  }
-}
-
-/* larger screen  */
-@media screen and (max-width: 1024px) {
-  .column, input[type=submit] {
-    width: 100%;
-    margin-top: 0;
-  }
-  img{
-    width: 100%;
-  }
-}
-
-/* contact de  */
-
-.gallery-container {
-  display: flex;
-  justify-content: space-evenly;
-   /* Border outside the gallery container */
-  padding: 20px; /* Optional: Add padding for better spacing */
-  max-width: 1600px; /* Adjust the maximum width of the gallery container */
-  margin: 10px auto; /* Center the gallery container on the page */
-}
-
-.gallery-item {
-  margin: 20px;
-  padding: 10px 10px; /* Optional: Add padding for space between image and border */
-}
-
-.gallery-item img {
-  width: 200px;
-  height: 100%;
-  max-width: 1000px;
-  border-radius: 8px;
-  border: 2px solid #023030; /* Border for each image */
-}
-
-.gallery-item img:hover {
-  border:2px solid white;
-}
-.gallery-item a:hover {
-  border:2px solid white;
-}
-
-.gallery-item a {
-  border: 2px solid #023030;
-  background-color: #c9beb4;
-}
-
-@media (max-width:600px) {
-  .gallery-container {
-    flex-direction: column; /* Change to a single column layout on small screens */
-    align-items: center; /* Center items in the column */
-  }
-
-  .gallery-item {
-    width: 100%; /* Take the full width of the container on small screens */
-    margin-bottom: 20px; /* Optional: Add spacing between items in the column */
-  }
-  
-}
-
-/* tablets */
-@media (max-width:768px) {
-  .gallery-container {
-    flex-direction: column; /* Change to a single column layout on small screens */
-    align-items: center; /* Center items in the column */
-  }
-
-  .gallery-item {
-    width: 100%; /* Take the full width of the container on small screens */
-    margin-bottom: 20px; /* Optional: Add spacing between items in the column */
-  }
-  
-}
-
-/* larger screen  */
-@media (max-width:1024px) {
-  .gallery-container {
-    flex-direction: column; /* Change to a single column layout on small screens */
-    align-items: center; /* Center items in the column */
-  }
-
-  .gallery-item {
-    width: 100%; /* Take the full width of the container on small screens */
-    margin-bottom: 20px; /* Optional: Add spacing between items in the column */
-  }
-  
-}
 
 *,
 *:before,
@@ -918,7 +672,7 @@ form .text h3{
   flex-direction: column;
   max-width: 80%;
   width: 100%;
-  height: 50%;
+  height: 70%;
   padding: 30px 40px;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -932,7 +686,7 @@ form .text h3{
 }
 .popup img {
   width: 100%; /* Adjust if needed */
-  height: auto; /* Adjust if needed */
+  height: 70%; /* Adjust if needed */
   border-radius: 10px;
   margin-top: 1rem;
 }
@@ -968,6 +722,8 @@ form .text h3{
   height: 100%;
   background-color: #CD8D7A;
   color: white;
+  padding: 15px 20px;
+  border-radius: 15px;
 
 }
 
@@ -1472,16 +1228,18 @@ table td:nth-last-child(1) {
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .rewards-section {
-      flex-direction: column;
+  .rewards-content h2 {
+    font-size: 20px; /* Adjust font size for smaller screens */
   }
 
-  .rewards-content, .rewards-image {
-      max-width: 100%;
+  .rewards-content p {
+    font-size: 14px; /* Adjust font size for smaller screens */
+    margin-bottom: 15px; /* Adjust margin for smaller screens */
   }
 
-  .rewards-image {
-      height: 200px;
+  #joinNow {
+    padding: 8px 16px; /* Adjust padding for smaller screens */
+    font-size: 14px; /* Adjust font size for smaller screens */
   }
 }
 
@@ -1534,13 +1292,21 @@ table td:nth-last-child(1) {
 
 /* Responsive adjustments */
 @media (max-width: 600px) {
-  .steps-container {
-      flex-direction: column;
-      
-      
+  .rewards-works-text {
+    padding: 20px;
   }
- 
+
+  .steps-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .step {
+    width: 48%; /* Adjust width for better spacing */
+  }
 }
+
 
 /* how earn points  */
 #rewards-work-points {
@@ -1593,6 +1359,33 @@ table td:nth-last-child(1) {
 .reward p {
   font-size: 14px;
   color: #333;
+}
+
+@media (max-width: 600px) {
+  #rewards-work-points {
+    padding: 20px;
+  }
+
+  .rewards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 50px;
+  }
+
+  .reward {
+    width: 120px; /* Adjust width for smaller screens */
+    height: 120px; /* Adjust height for smaller screens */
+  }
+  
+  .rewards-container .reward {
+    width: 120px; /* Adjust width for smaller screens */
+    height: 120px; /* Adjust height for smaller screens */
+  }
+  
+  .rewards-container:nth-child(2) {
+    order: -1; /* Move the second set of circles to the top */
+  }
 }
 
 
@@ -1650,6 +1443,18 @@ table td:nth-last-child(1) {
   color: #666;
 }
 
+@media (max-width: 768px) {
+  #rewards-reedem-points {
+    padding: 20px;
+  }
+
+  .discount {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+}
 /* endbtn for games html*/
 .endtext {
   text-align: center;
@@ -1850,10 +1655,16 @@ form button {
   text-align: center;
   padding: 50px ;
   margin-top: 10px;
+  
 }
 .seperator p {
   text-decoration: #CD8D7A underline;
   text-underline-offset: 10px;
+  font-size: 15px;
+  
+}
+.seperator h1 {
+  font-size: 15px;
 }
 
 .gamestoplay {
@@ -1883,7 +1694,7 @@ form button {
 .game-wrapper{
   margin-top: 50px;
   padding: 30px;
-  background: #CD8D7A;
+  background: transparent;
   display: flex;
   justify-content: center;
   
@@ -1970,44 +1781,55 @@ form button {
   width: 100%;
   padding: 20px 20px;
   border-radius: 7px;
-  background: #ffffff;
-  height: calc(100% / 4 - 30px);
+  background: transparent;
   justify-content: space-evenly;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  
+  
+}
+.game-time {
+  color: #ffffff;
+} 
+.game-flips {
+  color: #ffffff;
 }
 
 .game-details p{
   font-size: 18px;
   height: 17px;
   padding-right: 185px;
-  border-right: 1px solid #ccc;
-  font-weight: bold;
+  border-right: 3px solid white;
+  
 }
 
 .game-details p span{
   margin-left: 8px;
-  font-weight: bold;
+  color: white;
 }
 
 .game-details p b{
-  font-weight: 500;
-  font-weight: bold;
+  font-size: 18px;
+  color: white;
 }
 
 .game-details button{
   cursor: pointer;
-  font-weight: bold;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   border-radius: 4px;
   padding: 10px 11px;
-  background: #9a9c84;
   transition: 0.3s ease;
 }
 
 .game-details button:hover{
   color: #fff;
-  background: #CD8D7A;
+}
+.backgroundgame {
+  background-image: url('images/backgroundgame.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 80%;
 }
 
 @media screen and (max-width: 700px) {
@@ -2091,6 +1913,8 @@ form button {
   color: black;
 }
 
+
+
 /* guess and earn */
 .hangmanbody {
   height: 100%;
@@ -2108,7 +1932,7 @@ form button {
   background-size: cover;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  background-color: #cd8d7a;
+  background-color: transparent;
   overflow: hidden;
 }
 
@@ -2116,6 +1940,10 @@ form button {
   width: 300px; /* Adjust as necessary for your layout */
   height: auto; /* This will maintain the aspect ratio */
   animation: swing 2s infinite;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+
 }
 
 
@@ -2123,6 +1951,30 @@ form button {
   margin-bottom: 20px;
   border: 1px solid #000;
 }
+
+.won-message {
+  font-size: 24px;  /* Adjust the font size as needed */
+  color: white;     /* Set the text color to white */
+  font-weight: bold; /* Set the font weight if needed */
+  /* Add any other styles you want to apply */
+}
+.lost-message {
+  font-size: 24px;  /* Adjust the font size as needed */
+  color: red;       /* Set the text color to red or any other color you prefer */
+  font-weight: bold; /* Set the font weight if needed */
+  /* Add any other styles you want to apply */
+}
+
+/* #keyboard {
+  font-size: 20px;
+  font-weight: bolder;
+  text-align: center;
+  color: black;
+  background-color: white;
+  border-radius: 20px;
+  width: 10%;
+  margin: 0 auto; /* Add this line to center the element */
+/*}*/
 
 #keyboard button {
   margin: 10px;
@@ -2133,6 +1985,8 @@ form button {
   color:black; /* Change text color if needed */
   font-weight: bolder;
   border: 1px solid #ccc; /* Change border color if needed */
+  text-transform: uppercase;
+  font-size: 20px;
 }
 
 #keyboard button:hover{
@@ -2140,21 +1994,23 @@ form button {
 }
 
 #wordToGuess {
-  font-size: 24px;
+  margin: 50px auto; /* Set top margin to 50px and horizontally center the element */
+  font-size: 30px;
   letter-spacing: 10px;
-  padding: 50px;
-  justify-content: center;
-}
-
-#message {
-  color: red;
+  padding: 20px;
+  width: 35%;
+  border-radius: 60px;
+  color: white;
+  background: rgba(255, 255, 255, 0.3);
+  text-align: center; /* Center the text horizontally */
+  text-transform: uppercase;
 }
 
 #reset {
   justify-content: center;
   padding: 10px 20px; /* Larger padding for a bigger button */
   margin-top: 30px;
-  background-color: #9a9c84; /* A soft pink that complements your color scheme */
+  background-color: #81689D; /* A soft pink that complements your color scheme */
   color: #fff; /* White text */
   border: none; /* Remove the default border */
   border-radius: 5px; /* Rounded corners */
@@ -2170,6 +2026,24 @@ form button {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Larger shadow on hover for a 'lifting' effect */
 }
 
+#mistakes {
+  padding-top: 30px;
+  font-size: 20px;
+  color: white;
+}
+#timeTag {
+  font-size: 20px;
+  color: white;
+}
+#hintstyle {
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  
+}
+
 
 @keyframes swing {
   0% { transform: rotate(-10deg); }
@@ -2180,70 +2054,113 @@ form button {
 
 /* account jtml */
 /* Profile container styles */
-.profile-container {
-  text-align: center; /* Center text */
-  margin: 20px auto;
-  
-}
 
-.user-avatar {
-  margin: 0 auto; /* Center the avatar */
-  width: 20%;
-  height: 20%;
-   /* Adjust border thickness here */
+
+/* Style for game, shopping cart, and logout divs */
+.profile-card {
+  height: 100%;
+  width: 100%; /* Adjust as necessary */
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 100px 100px;
   overflow: hidden;
 }
+.profile-background {
+    position: relative;
+    height: 150px;
+    width: 100%; /* Adjust as necessary */
+    overflow: hidden;
+}
 
-.avatar-image {
+.background-image {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.profile-header {
+  text-align: center;
+  padding: 50px;
   width: 100%;
-  height: auto;
+  background: #F4D9C6; /* Or any other light gray color */
+  position: relative;
+}
+
+.profile-image {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profile-header h1 {
+  margin: 10px 0 5px;
+  font-size: 18px;
+}
+
+.profile-header p {
+  margin: 4px 0;
+  color: gray;
+  font-size: 14px;
+}
+
+.add-button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+.profile-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+.stat {
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #888;
 }
 
 .user-name {
-  margin-top: 0;
-  font-size: 30px;
   text-transform: capitalize;
+  font-size: 20px;
 }
 
 .user-email {
-  color: #777;
-  padding-bottom: 30px;
-  font-size: 15px;
+  font-size: 20px;
 }
-
-/* Style for the points and vouchers */
-.profile-details {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  border: 1px solid black;
-  padding: 20px;
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.points-container, .vouchers-container {
-  text-align: center;
-  margin: 0 20px; /* Add margin between points and vouchers */
-}
-
-.points-value, .vouchers-value {
-  font-size: 2em;
-  margin-bottom: 10px;
-}
-
-/* Style for game, shopping cart, and logout divs */
-.gameDiv {
-  border: 3px solid #ddd; /* Adjust border thickness here */
+.gameDiv{
+  border: 3px solid #9a9c84; /* Adjust border thickness here */
   padding: 20px 15px;
   margin: 20px 0; /* Adjust vertical margin */
   width: calc(100% - 6px); /* Adjust for the border thickness */
   box-sizing: border-box;
 }
-
-/* Center the text inside .gamesRect a and remove float */
-.gamesRect a {
+.gameDiv:hover {
+  background-color: #FFEEF4;
+}
+.gamesRect a{
   display: block; /* Remove float and use block to center text */
   text-align: center;
   text-decoration: none;
@@ -2251,15 +2168,49 @@ form button {
   margin: 0; /* Remove any default margins */
   padding: 10px 0; /* Add some padding */
 }
-
-/* Ensure the .gamesRect a fills its container */
-.gamesRect {
-  width: 100%;
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
 }
 
-.gameDiv:hover{
-  background-color: #CD8D7A;
+/* Style for the dropdown content */
+.dropdown-content {
+  display: none;
+  width: 80%;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
+
+/* Style for each dropdown item/link */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  display: block;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Show the dropdown content on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+
+
+
+
+
+
 
 
 /* spinning the wheel game  */
@@ -2277,7 +2228,6 @@ main {
 
 .msg {
 	min-height: 4rem;
-	font-family: Arial, Helvetica, sans-serif;
 	margin-top: 0.5rem;
 	text-transform: capitalize;
 }
@@ -2288,7 +2238,7 @@ main {
 	margin: 1rem 0;
 	width: var(--size-wheel);
 	height: var(--size-wheel);
-	border: 10px solid #cd8d7a;
+	border: 10px solid #81689D;
 	border-radius: 50%;
 	list-style: none;
 	overflow: hidden;
@@ -2334,7 +2284,7 @@ main {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: rgb(255, 255, 255);
+	background-color: #81689D;
 	border-radius: 50%;
 }
 .wheel-prize {
@@ -2348,7 +2298,6 @@ main {
 }
 
 .text {
-	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	left: -100%;
 	width: 200%;
@@ -2357,7 +2306,8 @@ main {
 	text-align: center;
 	padding-top: 1.7rem;
 	font-weight: 600;
-	color: #fff;
+	color: black;
+  font-size: large;
 }
 
 .text > b {
@@ -2367,11 +2317,11 @@ main {
 }
 
 .text-1 {
-	background-color: #EAC7C7;
+	background-color: #D0BFFF;
 }
 
 .text-2 {
-	background-color: #cd8d7a;
+	background-color: #FFEEF4;
 }
 
 .main {
@@ -2385,7 +2335,8 @@ main {
 	display: inline-block;
 	text-align: center;
 	border: 0;
-	background-color: #cd8d7a;
+	background-color: #81689D;
+	
 	color: #fff;
 	font-size: 1.5rem;
 	border-radius: 4rem;
@@ -2399,9 +2350,22 @@ main {
 	opacity: 0.8;
 }
 
+.wheelvoucher {
+  color: white;
+  font-size: 20px;
+}
+.points {
+  color: white;
+  font-size: 20px;
+}
+.limitwheel h1 {
+  color: black;
+  font-size: 18px;
+}
+
 .nextBtn {
   float: right;
-  background-color: #9a9c84;
+  background-color: #CD8D7A;
   padding: 10px 15px ;
   border-radius: 15px;
   margin-right: 30px;
@@ -2416,7 +2380,7 @@ main {
 
 .backBtn {
   float: left;
-  background-color: #9a9c84;
+  background-color: #CD8D7A;
   padding: 10px 15px ;
   border-radius: 15px;
   margin-left: 30px;
@@ -2427,78 +2391,5 @@ main {
   color: white;
 }
 
-/* Modal Container */
-.modalpop {
-  display: none; /* Hide modal by default */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #fff;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Make sure this is above other content */
-}
 
-/* Modal Content */
-.modal-content {
-  display: flex; /* Use flexbox for layout */
-  align-items: center; /* Center items vertically */
-  justify-content: center; /* Center items horizontally */
-  width: 900px;
-  height: 400px;
-  text-align: center; /* Center text for child elements */
-}
 
-/* Close Button */
-.close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 40px;
-  cursor: pointer;
-  color: #333;
-}
-
-/* Modal Flex Container */
-.modal-flex {
-  display: flex;
-  width: 100%; /* Take full width of the modal-content */
-  height: 100%; /* Take full height of the modal-content */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-}
-
-/* Modal Image */
-.modal-image img {
-  width: auto; /* Adjust width automatically */
-  height: 100%; /* Full height of the container */
-  max-width: 50%; /* Maximum of half the container width */
-  border-radius: 50%; /* If you want rounded corners */
-}
-
-/* Modal Text */
-.modal-text {
-  width: 50%; /* Take up the remaining half */
-  padding-left: 20px; /* Space between image and text */
-  display: flex; /* Flex layout for internal alignment */
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center children vertically */
-  align-items: flex-start; /* Align children to the start (left side) */
-}
-
-/* Subscribe Button */
-#subscribeButton {
-  margin-top: 20px; /* Space from the last text element */
-  background-color: #4CAF50;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#subscribeButton:hover {
-  background-color: #45a049;
-}

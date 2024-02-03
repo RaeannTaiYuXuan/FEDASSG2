@@ -42,35 +42,29 @@ function filterImages(category) {
 
 // end of filter gallery
 
-document.addEventListener("DOMContentLoaded", function () {
-  const subscribeModal = document.getElementById("subscribeModal");
-  const closeButton = document.querySelector(".close-button");
-  const subscribeButton = document.getElementById("subscribeButton");
-
-  // Show the modal on page load/refresh
-  showSubscribeModal();
-
-  closeButton.addEventListener("click", function () {
-      hideSubscribeModal();
-  });
-
-  subscribeButton.addEventListener("click", function () {
-      // Add your logic to redirect to another page
-      window.location.href = 'your_target_page.html';
-  });
-
-  function showSubscribeModal() {
-      // Check if the modal should be displayed (e.g., using a cookie)
-      // You can implement logic to show it based on user preferences
-
-      // For now, let's show the modal unconditionally
-      subscribeModal.style.display = "block";
-  }
-
-  function hideSubscribeModal() {
-      subscribeModal.style.display = "none";
-  }
+window.addEventListener("load", function () {
+  // Set a timeout function to execute after 2000 milliseconds (2 seconds)
+  setTimeout(function () {
+      // Open the popup
+      openPopup();
+  }, 2000);
 });
+
+// Add a click event listener to the element with id 'close'
+document.querySelector("#close").addEventListener("click", function () {
+  // Close the popup when the 'close' element is clicked
+  closePopup();
+});
+
+// Function to open the popup
+function openPopup() {
+  document.querySelector(".popup").style.display = "block";
+}
+
+// Function to close the popup
+function closePopup() {
+  document.querySelector(".popup").style.display = "none";
+}
 
 
 

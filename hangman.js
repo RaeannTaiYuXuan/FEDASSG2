@@ -1,5 +1,12 @@
-const words = ['loafers', 'stilettos', 'flats', 'sandals'];
-let selectedWord = words[Math.floor(Math.random() * words.length)];
+const wordsAndHints = [
+  { word: 'loafers', hint: 'Comfortable shoes often worn casually.' },
+  { word: 'stilettos', hint: 'High-heeled shoes with a thin, tall heel.' },
+  { word: 'flats', hint: 'Shoes with no heel or a very low heel.' },
+  { word: 'sandals', hint: 'Open-toed shoes often worn in warm weather.' }
+];
+
+let selectedWord;
+let hint;
 let guessed = [];
 let mistakes = 0;
 let wordStatus = '';
@@ -31,19 +38,22 @@ function startTimer() {
 }
 
 function resetGame() {
-  selectedWord = words[Math.floor(Math.random() * words.length)];
-  mistakes = 0;
+  selectedWord = getRandomWord();
+  hint = getHintForWord(selectedWord.word);
   guessed = [];
+  mistakes = 0;
   timeLeft = maxTime;
   clearInterval(timer);
-  document.getElementById('timeTag').innerText = "Time Left: " + timeLeft; // Reset the timer display
+  document.getElementById('timeTag').innerText = "Time Left: " + timeLeft;
   document.getElementById('keyboard').innerHTML = '';
-  wordStatus = selectedWord.split('').map(letter => '_').join(' ');
+  wordStatus = selectedWord.word.split('').map(letter => '_').join(' ');
   document.getElementById('wordToGuess').innerHTML = wordStatus;
   document.getElementById('message').innerHTML = '';
+  document.getElementById('hintstyle').innerText = 'Hint: ' + hint;
+  updateHangmanPicture();
   generateKeyboard();
   drawHangman();
-  startTimer(); // Start the timer again after resetting
+  startTimer();
 }
 
 function generateKeyboard() {
@@ -65,7 +75,7 @@ function handleGuess(chosenLetter) {
     document.getElementById(chosenLetter).setAttribute('disabled', true);
     startTimer();
 
-    if (selectedWord.indexOf(chosenLetter) >= 0) {
+    if (selectedWord.word.indexOf(chosenLetter) >= 0) {
       guessedWord();
       checkIfGameWon();
     } else {
@@ -77,26 +87,44 @@ function handleGuess(chosenLetter) {
 }
 
 function guessedWord() {
-  wordStatus = selectedWord.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : "_ ")).join('');
+  wordStatus = selectedWord.word.split('').map(letter => (guessed.indexOf(letter) >= 0 ? letter : "_ ")).join('');
   document.getElementById('wordToGuess').innerHTML = wordStatus;
 }
 
 function checkIfGameWon() {
   if (!wordStatus.includes('_')) {
-    document.getElementById('keyboard').innerHTML = 'You Won!!!';
+    const keyboardElement = document.getElementById('keyboard');
+    const messageElement = document.getElementById('message');
+    
+    keyboardElement.innerHTML = '';
+    keyboardElement.classList.add('hidden');  // Add the 'hidden' class to hide the keyboard
+    
+    messageElement.innerHTML = '<span class="won-message">You Won!!!</span>';
+    
     clearInterval(timer);
     openModal("Congratulations! You've won the game!");
   }
 }
 
+
+
+
 function checkIfGameLost() {
   if (mistakes === 6) {
-    document.getElementById('wordToGuess').innerHTML = 'The answer was: ' + selectedWord;
-    document.getElementById('keyboard').innerHTML = 'You Lost!!!';
+    const gameContainer = document.getElementById('keyboard');
+    const messageElement = document.getElementById('message');
+    
+    gameContainer.innerHTML = ''; // Replace the content or adjust as needed
+    gameContainer.classList.add('hidden'); // Add the 'hidden' class to hide the container
+    
+    messageElement.innerHTML = '<span class="lost-message">You Lost!!!</span>';
+    
     clearInterval(timer);
-    openModal("Sorry, you lost the game. The word was: " + selectedWord);
+    openModal("Sorry, you lost the game. The word was: " + selectedWord.word);
   }
 }
+
+
 
 function updateHangmanPicture() {
   document.getElementById('mistakes').textContent = `Mistakes: ${mistakes}`;
@@ -111,7 +139,15 @@ function closeModal() {
   document.getElementById('popupModal').style.display = 'none';
 }
 
+function getRandomWord() {
+  return wordsAndHints[Math.floor(Math.random() * wordsAndHints.length)];
+}
+
+function getHintForWord(word) {
+  const wordObject = wordsAndHints.find(item => item.word === word);
+  return wordObject ? wordObject.hint : '';
+}
+
 document.getElementById('reset').addEventListener('click', resetGame);
 
-generateKeyboard();
 resetGame();

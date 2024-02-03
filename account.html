@@ -45,32 +45,31 @@
     
   </header>
 
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 
-<div class="profile-container">
+<div class="profile-card">
+  <div class="profile-background">
+    <img src="images/slideshow2.jpg" alt="Background" class="background-image">
+</div>
   <div class="profile-header">
-      <div class="user-avatar">
-          <!-- This is where the user's avatar will go -->
-          <img src="images/usericon.png" alt="User Avatar" class="avatar-image">
-      </div>
-      <div class="user-info">
-          <!-- User's Name and Email -->
-          <h1 class="user-name">NAME</h1>
-          <p class="user-email">EMAIL ADDRESS</p>
-      </div>
+      <img src="images/usericon.png" alt="Profile Image" class="profile-image">
+      <h1 class="user-name">NAME</h1>
+      <p class="user-email">EMAIL ADDRESS</p>
+    
   </div>
-  <div class="profile-details">
-      <!-- Points and Vouchers -->
-      <div class="points-container">
-          <span class="points-value">0</span>
-          <p>SATURDAY POINTS</p>
+  <div class="profile-stats">
+      <div class="stat">
+          <span class="stat-number">0</span>
+          <span class="stat-label">SATURDAY POINTS</span>
       </div>
-      <div class="vouchers-container">
-          <span class="vouchers-value">0</span>
-          <p>VOUCHERS</p>
+      <div class="stat">
+          <span class="stat-number">0</span>
+          <span class="stat-label">VOUCHER</span>
       </div>
+
+      
+      
   </div>
-  
   <div class="gameDiv">
     <div class="gamesRect">
       <a href="gamestoearnpoints.html"><i class="fa fa-gamepad"></i>&nbsp GAMES</a>
@@ -89,6 +88,19 @@
     </div>
   </div>
 
+  <div class="gameDiv">
+    <div class="gamesRect">
+      <div class="dropdown">
+        <a href="#" class="dropbtn"><i class="fa fa-money"></i>&nbsp; REDEEM</a>
+        <div class="dropdown-content" id="redemptionOptions">
+          <a href="#" data-points="500">Voucher: $5 OFF (500 points)</a>
+          <a href="#" data-points="1000">Voucher: $10 OFF (1000 points)</a>
+          <a href="#" data-points="2500">Voucher: $25 OFF (2500 points)</a>
+          <a href="#" data-points="5000">Voucher: $50 OFF (5000 points)</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 
@@ -128,7 +140,7 @@ INFERNO Copyright © 2024 Saturday.- All rights reserved
 <script src="Script.js"></script>
 <script src="api.js"></script>
 <script src="shoppingcart.js"></script>
-<script src="points.js"></script>
+
 
 </body>
 </html>

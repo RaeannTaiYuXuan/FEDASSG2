@@ -103,6 +103,9 @@ showSlides(slideIndex);
 
 
 
+
+
+
 // scrolling and nav bar become white
 window.addEventListener('scroll', function() {
   var navbar = document.querySelector('.navbar');
@@ -124,24 +127,6 @@ window.addEventListener('scroll', function() {
 
 
 
-
-// this is for the shopping cart thingy
-// shoppingcart.js
-
-
-
-
-
-
-
-// ... (other functions remain unchanged)
-
-
-
-// end of filter gallery
-// Script.js
-
- 
 
 
  

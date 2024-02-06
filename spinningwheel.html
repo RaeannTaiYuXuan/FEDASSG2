@@ -3,7 +3,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">  
-    <title>Memory Game</title>
+    <title>Saturday |  Wheel It</title>
+    <link rel="icon" type="image/x-icon" href="Images/MemoryLogo.png">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!--linking to another external to get images for ICON-->
@@ -32,11 +33,11 @@
           <li><a href="NEWIN.html"style="color: black;">NEW IN</a></li>
           <li><a href="bags.html"style="color: black;">BAGS</a></li>
           <li><a href="shoe.html"style="color: black;">SHOES</a></li>
-          <li><a href="Games.html"style="color: black;">GET $100</a></li>
+          <li><a href="Rewards.html"style="color: black;">GET $100</a></li>
           <li><a href="ContactUs.html"style="color: black;">CONTACT US</a></li>
           <li><a href="Login.html"style="color: black;" id="navbar-login">LOG IN </a></li>
           <li><a href="Register.html"style="color: black;" id="navbar-signup">SIGN UP </a></li>
-          <li><a href="gamestoearnpoints.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
+          <li><a href="games.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
           <li><a href="account.html" id="navbar-account" style="display: none; color: black;"><i class="fa fa-user" style="font-size: 15px;" ></i></a></li>
           <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%; font-size: 15px;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
           
@@ -50,6 +51,16 @@
 
 <br><br><br><br><br>
 
+<!-- <div class="popup">
+  <button id="close">&times;</button>
+  <h2>BE A MEMBER NOW  </h2>
+  <p>
+      GET 100 POINTS NOW WHEN YOU SIGN UP !!!
+  </p>
+  <a href="register.html">REGISTER NOW</a>
+</div> -->
+ <!-- will implement when i finish points -->
+
 
 <div class="seperator">
   <h1>Wheel It</h1>
@@ -59,7 +70,7 @@
 <main>
   <section class="main">
     <div class="limitwheel">
-      <h1>Total Spins Left: </h1>
+      <h1>Total Spins Left:</h1>
     </div>
     <br><br><br>
     <span>
@@ -67,12 +78,13 @@
     </span>
     <button class="btn--wheel">SPIN</button>
     <br><br><br>
-    <h1 class="wheelvoucher">Total Voucher: 0</h1>
     <h1 class="points">Total Points: 0</h1>
 
   </section>
   <h1 class="msg"></h1>
 </main>
+
+<br><br><br>
 
 <!-- Add a "Next" button to navigate to the next game -->
 <div class="nextBtn">
@@ -127,7 +139,9 @@
   
   
 
-    <script src="spinthewheel.js"></script>
+  <script src="Games Js/spinthewheel.js"></script>
+    <script src="Script.js"></script>
+    <script src="Link to API & Cart JS/points.js"></script>
     
     </div>
   </body>

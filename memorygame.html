@@ -3,7 +3,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">  
-    <title>Memory Game</title>
+    <title>Saturday |  Shoe Memories</title>
+    <link rel="icon" type="image/x-icon" href="Images/MemoryLogo.png">
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <!--linking to another external to get images for ICON-->
@@ -33,11 +34,11 @@
           <li><a href="NEWIN.html"style="color: black;">NEW IN</a></li>
           <li><a href="bags.html"style="color: black;">BAGS</a></li>
           <li><a href="shoe.html"style="color: black;">SHOES</a></li>
-          <li><a href="Games.html"style="color: black;">GET $100</a></li>
+          <li><a href="Rewards.html"style="color: black;">GET $100</a></li>
           <li><a href="ContactUs.html"style="color: black;">CONTACT US</a></li>
           <li><a href="Login.html"style="color: black;" id="navbar-login">LOG IN </a></li>
           <li><a href="Register.html"style="color: black;" id="navbar-signup">SIGN UP </a></li>
-          <li><a href="gamestoearnpoints.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
+          <li><a href="games.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
           <li><a href="account.html" id="navbar-account" style="display: none; color: black;"><i class="fa fa-user" style="font-size: 15px;" ></i></a></li>
           <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%; font-size: 15px;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
           
@@ -56,6 +57,11 @@
   <h1>Shoe Memories</h1>
   <p>Match all gems and get a random price</p>
 </div>
+
+
+
+      <h1 class="memorypoints">Total Points: 0</h1>
+      <h1 class="remaining-refreshes">Remaining Refreshes: 3</h1>
 
 
 
@@ -166,7 +172,10 @@
         <p class="game-time">Time: <span><b>40</b>s</span></p>
         <p class="game-flips">Flips: <span><b>0</b></span></p>
         <button class="game-refresh-button">Refresh</button>
+        
       </div>
+
+      
 
       <br><br><br>
       <div class="nextBtn">
@@ -219,9 +228,11 @@
   
   
 
-    <script src="games.js"></script>
+    <script src="Games Js/games.js"></script>
     <script src="Script.js"></script>
-    <script src="api.js"></script>
+    <script src="Link to API & Cart JS/api.js"></script>
+    <script src="Link to API & Cart JS/points.js"></script>
+    <script src="Link to API & Cart JS/shoppingcart.js"></script>
     </div>
   </body>
 </html>

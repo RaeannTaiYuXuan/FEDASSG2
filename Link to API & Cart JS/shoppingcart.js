@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
-    displayUserPoints();
     loadCartState();
+    displayUserPoints();
 
 });
 
@@ -134,9 +134,6 @@ function addToCart(name, price, image) {
 
 
 
-function redirect() {
-    window.location.href = 'index.html';
-}
 
 function calculateTotalCost(items) {
     var total = 0;
@@ -185,99 +182,75 @@ function openModal(message) {
 function closeModal() {
     var modal = document.getElementById('popupModal');
     modal.style.display = 'none';
-    redirect();
+
 }
 
 
 function displayUserPoints() {
-    var userPointsDisplay = document.getElementsByClassName('stat-label');
-    var points = localStorage.getItem('user-Points') || '0';
-    userPointsDisplay.textContent = `${points}`;
+    var userPointsDisplay = document.getElementsByClassName('stat-number')[0];
+    if (userPointsDisplay) {
+        var points = localStorage.getItem("user-Points") || '100';
+        userPointsDisplay.textContent = points;
+    } else {
+        console.error('User points display element not found.');
+    }
 }
 
+document.addEventListener('DOMContentLoaded', function () {
+    
+    displayUserPoints();
 
-//start of the api (hope it works)
-// Checkout event listener
-document.getElementById('checkout').addEventListener('click', async function () {
-    var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    var userName = localStorage.getItem('user-Name');
-    var cartItems = getCartItems();
 
-    if (!isLoggedIn || !userName) {
-        openModal('Please log in before checking out.');
-        return;
-    }
+});
 
-    if (cartItems.length === 0) {
-        openModal('The cart is empty. Add items before checking out.');
-        return;
-    }
 
-    var totalCost = calculateTotalCost(cartItems);
-    var pointsEarned = totalCost * 10; // $1 = 10 points
-
-    try {
-        await updateUserPoints(pointsEarned, userName);
-        openModal(`You earned ${pointsEarned} points for this purchase!`);
-        clearCart();
-    } catch (error) {
-        console.error('Error during checkout:', error);
-        openModal('There was an issue during the checkout process. Please try again.');
+// function to upload voucher when redeem 
+// Add an event listener to the redemption links
+document.getElementById('redemptionOptions').addEventListener('click', function (event) {
+    event.preventDefault();
+    var redeemLink = event.target;
+    if (redeemLink.classList.contains('redeemVoucherLink')) {
+        var pointsRequired = parseInt(redeemLink.getAttribute('data-points'));
+        redeemVoucher(pointsRequired);
     }
 });
 
-// Function to update user points in the database
-async function updateUserPoints(pointsEarned, userName) {
-    const userEmail = localStorage.getItem("user-Email");
-    const userPwd = localStorage.getItem("user-Pwd");
+// Function to redeem voucher
+async function redeemVoucher(pointsRequired) {
+    var userPoints = parseInt(localStorage.getItem("user-Points")) || 0;
 
-    const APIKEY = "65bd0b1da15ddef163c3c658";
-    const queryURL = `https://saturdayuser-aae1.restdb.io/rest/customerdetails?q={"user-Name": "${userName}"}`;
-
-    const getUserResponse = await fetch(queryURL, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            "x-apikey": APIKEY
-        }
-    });
-
-    const users = await getUserResponse.json();
-
-    if (users.length > 0) {
-        const user = users[0];
-        const updatedPoints = (user['user-Points'] || 0) + pointsEarned;
-
-        const updateURL = `https://saturdayuser-aae1.restdb.io/rest/customerdetails/${user._id}`;
-
-        
-
-        const updateResponse = await fetch(updateURL, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-                "x-apikey": APIKEY
-            },
-            body: JSON.stringify({
-                "user-Name": userName,
-                "user-Email": userEmail,
-                "user-Pwd": userPwd,
-                "user-Points": updatedPoints
-            })
-            
-        });
-
-        if (!updateResponse.ok) {
-            throw new Error(`HTTP error! status: ${updateResponse.status}`);
-        }
-
-        const updatedUser = await updateResponse.json();
-        console.log("Points updated:", updatedUser);
-
-        // Update local storage
-        localStorage.setItem('user-Points', updatedUser['user-Points']);
+    if (userPoints >= pointsRequired) {
+        // Deduct points from the user's total
+        var updatedPoints = userPoints - pointsRequired;
+        localStorage.setItem('user-Points', updatedPoints);
         displayUserPoints(); // Update the points display on the page
+
+        // Deduct points from the user-Points in the database
+        var userName = localStorage.getItem('user-Name');
+        try {
+            await updateUserPoints(-pointsRequired, userName); // Use negative points to deduct
+        } catch (error) {
+            console.error('Error deducting points from the database:', error);
+            openModal('There was an issue deducting points. Please try again.');
+            return;
+        }
+
+        // Retrieve and update the voucher count from localStorage
+        var voucherCount = parseInt(localStorage.getItem('voucherCount')) || 0;
+        voucherCount++;
+        localStorage.setItem('voucherCount', voucherCount);
+
+        // Update the voucher count on the page
+        document.getElementById('voucherContainer').textContent = voucherCount;
+
+        openModal(`Voucher redeemed successfully!`);
     } else {
-        throw new Error('User not found.');
+        openModal('Insufficient points to redeem this voucher.');
     }
 }
+
+
+// Modify your login logic to include the following code
+var voucherCount = parseInt(localStorage.getItem('voucherCount')) || 0;
+document.getElementById('voucherContainer').textContent = voucherCount;
+

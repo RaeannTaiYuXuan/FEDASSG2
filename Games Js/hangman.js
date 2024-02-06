@@ -1,8 +1,52 @@
+
 const wordsAndHints = [
   { word: 'loafers', hint: 'Comfortable shoes often worn casually.' },
   { word: 'stilettos', hint: 'High-heeled shoes with a thin, tall heel.' },
   { word: 'flats', hint: 'Shoes with no heel or a very low heel.' },
   { word: 'sandals', hint: 'Open-toed shoes often worn in warm weather.' }
+];
+
+const listGift = [
+  {
+    text: '100 points',
+    percent: 10 / 100,
+    type: 'points', // Type for points
+  },
+  {
+    text: '20 points',
+    percent: 10 / 100,
+    type: 'points', // Type for voucher
+  },
+  {
+    text: '1 points',
+    percent: 5 / 100,
+    type: 'points', // Type for points
+  },
+  {
+    text: '10 points',
+    percent: 5 / 100,
+    type: 'points', // Type for voucher
+  },
+  {
+    text: '50 points',
+    percent: 5 / 100,
+    type: 'points', // Type for points
+  },
+  {
+    text: '30 points ',
+    percent: 40 / 100,
+    type: 'points', // Type for voucher
+  },
+  {
+    text: '120 points',
+    percent: 10 / 100,
+    type: 'points', // Type for voucher
+  },
+  {
+    text: 'NA',
+    percent: 20 / 100,
+    type: 'none', // Type for points
+  },
 ];
 
 let selectedWord;
@@ -13,6 +57,11 @@ let wordStatus = '';
 let maxTime = 30;
 let timeLeft = maxTime;
 let timer;
+
+function startGame() {
+  resetGame();
+  startTimer();
+}
 
 function initTimer() {
   if (timeLeft <= 0) {
@@ -32,9 +81,11 @@ function initTimer() {
 }
 
 function startTimer() {
-  if (!timer) {
-    timer = setInterval(initTimer, 1000);
+  if (timer) {
+    clearInterval(timer);
   }
+
+  timer = setInterval(initTimer, 1000);
 }
 
 function resetGame() {
@@ -53,7 +104,6 @@ function resetGame() {
   updateHangmanPicture();
   generateKeyboard();
   drawHangman();
-  startTimer();
 }
 
 function generateKeyboard() {
@@ -91,21 +141,39 @@ function guessedWord() {
   document.getElementById('wordToGuess').innerHTML = wordStatus;
 }
 
-function checkIfGameWon() {
+async function checkIfGameWon() {
   if (!wordStatus.includes('_')) {
     const keyboardElement = document.getElementById('keyboard');
     const messageElement = document.getElementById('message');
-    
+
     keyboardElement.innerHTML = '';
-    keyboardElement.classList.add('hidden');  // Add the 'hidden' class to hide the keyboard
-    
-    messageElement.innerHTML = '<span class="won-message">You Won!!!</span>';
-    
+    keyboardElement.classList.add('hidden');
+
+    const randomIndex = Math.floor(Math.random() * listGift.length);
+    const selectedGift = listGift[randomIndex];
+
+    if (selectedGift.type === 'points') {
+      const userName = localStorage.getItem('user-Name');
+      const pointsEarned = parseInt(selectedGift.text);
+
+      try {
+        await updateUserPoints(pointsEarned, userName);
+        messageElement.innerHTML = `<span class="won-message">You Won!!! ${selectedGift.text} points added to your account.</span>`;
+        openModal(`Congratulations! You've won: ${selectedGift.text} points`);
+      } catch (error) {
+        console.error('Error updating user points:', error);
+        messageElement.innerHTML = '<span class="won-message">You Won!!!</span>';
+        openModal("Congratulations! You've won the game!");
+      }
+    } else {
+      // Handle other types if needed
+      messageElement.innerHTML = '<span class="won-message">You Won!!!</span>';
+      openModal("Congratulations! You've won the game!");
+    }
+
     clearInterval(timer);
-    openModal("Congratulations! You've won the game!");
   }
 }
-
 
 
 
@@ -123,8 +191,6 @@ function checkIfGameLost() {
     openModal("Sorry, you lost the game. The word was: " + selectedWord.word);
   }
 }
-
-
 
 function updateHangmanPicture() {
   document.getElementById('mistakes').textContent = `Mistakes: ${mistakes}`;
@@ -148,6 +214,6 @@ function getHintForWord(word) {
   return wordObject ? wordObject.hint : '';
 }
 
-document.getElementById('reset').addEventListener('click', resetGame);
+document.getElementById('reset').addEventListener('click', startGame);
 
-resetGame();
+startGame();

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Games</title>
+    <title>Saturday | Games</title>
+    <link rel="icon" type="image/x-icon" href="Images/MemoryLogo.png">
     <link rel="stylesheet" href="style.css">
     <!--linking to another external to get images for ICON-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
@@ -18,15 +19,10 @@
     
 </head>
 <body>
-    <!-- make it like pop up in index.html to get to this page 
-    make sure that it says get up to $100 off first purchase and get 1000 points when u sign up with us 
-    continue to play everyday to get points that can offset the total price and 
-    get daily discount for specific items bag or shoes. the points are called diamonds instead-->
+    
 
     <header>
-      <!-- <div class="top">
-        <a href="register.html"><p>Welcome to Shoe, register now to get 10% off first purchase</p></a>
-      </div> -->
+      
       <nav class="navbar" style="background-color: white;">
         <a class="logo" href="Index.html" style="color: black;"><i class="fa fa-slideshare"></i>&nbsp;Saturday<span>.</span></a>
         <ul class="menu-links">
@@ -35,11 +31,11 @@
           <li><a href="NEWIN.html"style="color: black;">NEW IN</a></li>
           <li><a href="bags.html"style="color: black;">BAGS</a></li>
           <li><a href="shoe.html"style="color: black;">SHOES</a></li>
-          <li><a href="Games.html"style="color: black;">GET $100</a></li>
+          <li><a href="Rewards.html"style="color: black;">GET $100</a></li>
           <li><a href="ContactUs.html"style="color: black;">CONTACT US</a></li>
           <li><a href="Login.html"style="color: black;" id="navbar-login">LOG IN </a></li>
           <li><a href="Register.html"style="color: black;" id="navbar-signup">SIGN UP </a></li>
-          <li><a href="gamestoearnpoints.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
+          <li><a href="games.html" id="gamestoearn" style="display: none; color: black;" ><i class="fa fa-gamepad" style="font-size: 15px;"></i></a></li>
           <li><a href="account.html" id="navbar-account" style="display: none; color: black;"><i class="fa fa-user" style="font-size: 15px;" ></i></a></li>
           <li><a href="shoppingcart.html" style="color: black;">  <i style="margin-right: 1%; font-size: 15px;" class="fa-solid fa-cart-shopping justify-content-end fa-xl" ></i></a></li>
           
@@ -51,128 +47,78 @@
 
       <br><br><br><br>
 
-      <div class="rewards-section">
-        <div class="rewards-content">
-            <h2>Saturday. Rewards Program</h2>
-            <p>Earn points and rewards on your favorite styles. Get exclusive discounts and more...</p>
-            <a href="Register.html">
-            <button id="joinNow">JOIN NOW</button>
-            </a>
+      <div class="gameImg">
+        <a href="#gamename">
+        <img src="images/gamesbanner.png" alt="game banner">
+        </a>
+      </div>
+
+      <div class="seperator" id="gamename">
+        <h1>Games to Earn Points</h1>
+        <p></p>
+      </div>
+
+      <div class="gamestoplay" >
+        <div class="game">
+          <a href="memorygame.html">
+            <img src="images/shoesmemories.png" alt="Join Our Rewards Program"></a>
+            <h3>1. Shoes Memories </h3>
         </div>
-        <div class="rewards-image">
-            <!-- Image of the person can be added as a background-image through CSS -->
-            
+        <!-- must link to  the section on "how can earn points" -->
+        <div class="game">
+          <a href="spinningwheel.html">
+            <img src="images/spinningwheel.png" alt="Earn Points"></a>
+            <h3>2. Spinning Wheel</h3>
         </div>
-    </div>
-
-    <div class="rewards-works-text">
-      <h1>How It Works</h1>
-      <p>Know how our program works to get free upgrades</p>
-    </div>
-
-    <div class="steps-container">
-      <div class="step">
-        <a href="Register.html">
-          <img src="images/signup.png" alt="Join Our Rewards Program"></a>
-          <h3>1. Sign Up </h3>
+        <!-- link to game page -->
+        <div class="game">
+          <a href="hangman.html">
+          <img src="images/guessandearn.png" alt="Earn Points"></a>
+          <h3>3.  Word Wizard  </h3>
+        </div>
       </div>
-      <!-- must link to  the section on "how can earn points" -->
-      <div class="step">
-        <a href="#rewards-work-points">
-          <img src="images/voucher earn points.png" alt="Earn Points"></a>
-          <h3>2. Earn Points</h3>
+
+      <div class="seperator">
+        <h1>Recommended</h1>
+        <p></p>
       </div>
-      <!-- link to game page -->
-      <div class="step">
-        <a href="gamestoearnpoints.html">
-        <img src="images/videogame.png" alt="Earn Points"></a>
-        <h3>3.  Play Games  </h3>
-      </div>
-    <!-- link to the checkout (probs is the cart im gonna changw it too) -->
-      <div class="step">
-        <a href="#rewards-reedem-points">
-          <img src="images/redeem-points_2037257.png" alt="Redeem on Orders"></a>
-          <h3>3. Redeem Points</h3>
-      </div>
-  </div>
 
-  <div id ="rewards-work-points">
-    <h1>How Can You Earn Points</h1>
-    <p>Get rewarded sooner by doing these task below </p>
-  </div>
+      <div class="galleryMiddle">
+        <!-- Product 1 -->
+        <div class="product">
+          <a href="shoe.html">
+          <img src="images/Product1.jpg" alt=" Gem-embellished Mules in Cream"></a>
+          <div class="product-name">Aiko Gem-embellished Mules in Cream</div>
+          <div class="product-price">$51.90</div>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product">
+          <a href="shoe.html">
+          <img src="images/Product 2.jpg" alt="Aiko Gem-embellished Mules in Glazed Nude"></a>
+          <div class="product-name">Aiko Gem-embellished Mules in Glazed Nude</div>
+          <div class="product-price">$51.90</div>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product">
+          <a href="shoe.html">
+          <img src="images/Product 3.jpg"alt="Charlotte Ballet Satin Flats in Cloud"></a>
+          <div class="product-name">Charlotte Ballet Satin Flats in Black</div>
+          <div class="product-price">$49.90</div>
+        </div>
+        
+        <!-- product 4 -->
+        <div class="product sold-out">
+          <a href="shoe.html">
+          <img src="images/Photo 4.jpg"alt="Charlotte Ballet Satin Flats in Cloud"></a>
+          <div class="product-name">Charlotte Ballet Satin Flats in Black</div>
+          <div class="product-price">$49.90</div>
+        </div>
+        
+        </div>
 
-  <div class ="rewards-container">
-    <div class="reward">
-        <div class="points-circle">10 points</div>
-        <p>Like on Facebook</p>
-    </div>
-    <div class="reward">
-        <div class="points-circle">  > 50 points</div>
-        <p>Play Games</p>
-    </div>
-    <div class="reward">
-        <div class="points-circle">$1 = 1Points</div>
-        <p>Place an Order</p>
-    </div>
-    <div class="reward">
-        <div class="points-circle">50 points</div>
-        <p>Sign Up</p>
-    </div>
-</div>
-
-<div id="rewards-reedem-points">
-  <h1>Redeem Points</h1>
-  <p>Redeem your points for these great rewards</p>
-</div>
-
-
-<!-- need add redeem points section here  -->
-<div class="discounts-container">
-  <div class="discount">
-      <div class="discount-icon"><i class="fa fa-money"></i></div>
-      <div class="discount-info">
-          <span class="discount-amount">$5 OFF</span>
-          <span class="discount-points">for 500 points</span>
-      </div>
-  </div>
-  <div class="discount">
-      <div class="discount-icon"><i class="fa fa-money"></i></div>
-      <div class="discount-info">
-          <span class="discount-amount">$10 OFF</span>
-          <span class="discount-points">for 1000 points</span>
-      </div>
-  </div>
-  <div class="discount">
-      <div class="discount-icon"><i class="fa fa-money"></i></div>
-      <div class="discount-info">
-          <span class="discount-amount">$25 OFF</span>
-          <span class="discount-points">for 2500 points</span>
-      </div>
-  </div>
-  <div class="discount">
-      <div class="discount-icon"><i class="fa fa-money"></i></div>
-      <div class="discount-info">
-          <span class="discount-amount">$50 OFF</span>
-          <span class="discount-points">for 5000 points</span>
-      </div>
-  </div>
-</div>
-
-<div class="endtext">
-  <h1>Start Earning Today</h1>
-  <p>Create a free account and earn with every purchase</p>
-</div>
-
-<div class="jnBtn">
-  <a href="Login.html">
-    LOG IN 
-  </a>
-  <a href="Register.html">
-    SIGN UP 
-  </a>
-</div>
-
-
+<br><br><br>
 <!-- footer section  -->
 <footer>
   <div class="footer">
@@ -200,6 +146,6 @@
   </footer>
 
 <script src="Script.js"></script>
-<script src="api.js"></script>
+<script src="Link to API & Cart JS/api.js"></script>
 </body>
 </html>

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let userName = document.getElementById("user-Name").value;
         let userEmail = document.getElementById("user-Email").value;
         let userPwd = document.getElementById("user-Pwd").value;
-        let userPoints = 0; //by default because theu sign up 
+        let userPoints = 100; //by default because theu sign up 
        
   
         let jsondata = {
@@ -134,6 +134,13 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.removeItem('isLoggedIn');
             localStorage.removeItem('user-Name');
             localStorage.removeItem('user-Email');
+            localStorage.removeItem('user-Points');
+
+
+            localStorage.removeItem('voucherCount');
+            localStorage.removeItem('lastPlayTimestamp');
+            localStorage.removeItem('dailySpins')
+        
             
             updateNavbarBasedOnLogin(); // Update navbar to reflect logged out state
             window.location.href = 'index.html'; // Redirect to home page or login page
@@ -179,6 +186,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem('user-Email', user["user-Email"]);
                 localStorage.setItem("userPoints", user.userPoints); 
                 localStorage.setItem("user-Pwd",user["user-Pwd"]);
+                
+
+                
 
 
                     updateUsernameOnAccountPage();

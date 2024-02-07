@@ -189,6 +189,8 @@ Banners ,slideshow images ->
 
 Lottie -> 
 1. https://app.lottiefiles.com/animation/31013406-320b-4e5e-8f4f-b8e0ab458d78?channel=web&source=public-animation&panel=embed
+2. https://app.lottiefiles.com/animation/4694fbab-8dc3-475e-9fe0-54adcdd0d518?panel=comments
+
 
 
 Acknowledgements:

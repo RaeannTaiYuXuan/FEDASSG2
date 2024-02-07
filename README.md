@@ -79,7 +79,7 @@ https://restdb.io/login/
 4. JQUery -> used to simplify DOM Manipulation. 
 
 
-**TESTING ->** (got testing of database , points and maybe adding to cart.  )
+**TESTING** 
 
 1. Login Form : 
 Go to Login.html page 
@@ -101,6 +101,13 @@ Try to submit the empty form and verify that an error message about the required
 Try to submit the form with an invalid email address and verify that a relevant error message appears
 Try to submit the form with all inputs valid and verify that a success message appears.
 In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
+
+4. RestDB :
+Try by using console.log and putting different input.
+Try to submit by leaving the input field blank and verify with a alert. 
+Try to put an invalid password and verify with a alert of invalid password 
+
+
 
 **DIFFERENT BROWSWER AND SCREEN SIZE**
 

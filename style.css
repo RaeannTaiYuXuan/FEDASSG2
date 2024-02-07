@@ -294,6 +294,7 @@ header .navbar {
   }
 
   .prev, .next {
+    margin-top: 40px;
     font-size: 18px; /* Adjust the font size for mobile screens */
     padding: 10px; /* Adjust padding for better mobile touch experience */
   }
@@ -348,7 +349,7 @@ video {
 
 @media (max-width: 1024px) {
   .middle {
-    margin-top: -60px; /* Adjust margin for desktop */
+    margin-top: 200px; /* Adjust margin for desktop */
   }
 
   .middle h1 {
@@ -428,6 +429,38 @@ p {
     font-size: 14px; /* Adjust font size for mobile */
   }
 }
+
+/* Tablets (up to 1024px) */
+@media (max-width: 1024px) {
+  .containerVid {
+    flex-direction: column; /* Optionally, change to a column layout for tablets if needed */
+    height: auto; /* Adjust height for tablets */
+    padding: 20px; /* Adjust padding for tablets */
+  }
+
+  .column {
+    flex: none; 
+     width: 100%; 
+    text-align: center; /* Center-align text for better readability */
+    padding: 20px; /* Adjust padding for tablets */
+  }
+
+  .column:not(:first-child):before {
+    /* Retain or remove the vertical line based on your design */
+    content: none; /* Use an empty string if you want to keep the line */
+    /* Other properties to style the line if you keep it */
+  }
+
+  h1 {
+    font-size: 22px; /* Adjust font size for h1 on tablets */
+  }
+
+  p {
+    font-size: 16px; /* Adjust font size for paragraphs on tablets */
+  }
+  /* Additional styles for other elements as needed */
+}
+
 
 
 /* 4 product gallery */
@@ -2643,10 +2676,10 @@ main {
   margin-bottom: 50px;
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .ctccontainer {
-    margin-left: 10%;
-    width: 80%;
+    
+    width: 100%;
   }
 
   .submitText h1 {
@@ -2665,13 +2698,13 @@ main {
     font-size: 13px;
   }
   .ctclottie {
-    margin-left: 10%;
+    
     width: 200px; /* Adjusted width for smaller screens */
     height: 200px; /* Adjusted height for smaller screens */
   }
 }
 
-@media only screen and (max-width: 1024px) {
+@media (max-width: 1024px) {
   .ctccontainer {
     margin-left: 20%;
     width: 60%;
@@ -2693,7 +2726,7 @@ main {
     font-size: 13px;
   }
   .ctclottie {
-    margin-left: 20%;
+    margin-bottom: 20px;
     width: 300px; /* Adjusted width for medium screens */
     height: 300px; /* Adjusted height for medium screens */
   }

@@ -48,13 +48,13 @@ In conclusion, the whole purpose is to make user comfortable, have fun and at th
 
 8. User will be able to navigate to the game page to play three different types of games to earn points so that they can redeem voucher up to $50 OFF.  [Raeann]
 
-9. Wheel It - where users get a limit of 5 times and have to wait for 24hrs to reset the number of spins, users will also get points through the wheel in random. **[JoeYi - api part]**
+9. Wheel It - where users get a limit of 5 times and have to wait for 24hrs to reset the number of spins, users will also get points through the wheel in random. **[JoeYi]**
 
-10. Shoes Memories - it is a memory card game where users will be times for a limit of 40s and if they sucesfully win the game they will be able to get points or sometimes they will get nothing. but if you lose, there will be a popup message saying that try again. **[JoeYi - api part]**
+10. Shoes Memories - it is a memory card game where users will be times for a limit of 40s and if they sucesfully win the game they will be able to get points or sometimes they will get nothing. but if you lose, there will be a popup message saying that try again. **[JoeYi]**
 
-11. Word Wizard - a game where is inspired by hangman where there is a random words that are related to our website, there is also a time limit of 30 seconds and a mistake limit of 6. so if you go over the time limit or hit 6 mistake , it will hide the keyboard and display you lost. if users are able to guess the hangman name they will earn points in random. **[JoeYi - api part]**
+11. Word Wizard - a game where is inspired by hangman where there is a random words that are related to our website, there is also a time limit of 30 seconds and a mistake limit of 6. so if you go over the time limit or hit 6 mistake , it will hide the keyboard and display you lost. if users are able to guess the hangman name they will earn points in random. **[JoeYi]**
 
-12. With the points earned from games and checkout, users will be able to redeem voucher with their points in the account page and when they redeem, the points in the restdb will decreased. The points and amount of voucher redeemed will be displayed and stored in account page in local storage. **[JoeYi - api part]**
+12. With the points earned from games and checkout, users will be able to redeem voucher with their points in the account page and when they redeem, the points in the restdb will decreased. The points and amount of voucher redeemed will be displayed and stored in account page in local storage. **[JoeYi]**
 
 **WORKED DONE**
 
@@ -104,10 +104,10 @@ In addition, you should mention in this section how your project looks and works
 
 **DIFFERENT BROWSWER AND SCREEN SIZE**
 
-1. We normally use max-width (600px,1024px and 1280px). We targeted the most used device which is mobile,laptop and desktop. 
+1. We normally use max-width (600px,1024px). We targeted the most used device which is mobile,laptop and desktop. 
 2. For our website, every page looks rather pleasing and comfortable even if it is in a small screen of max width 600px. for 600px, the width and height must be lessen by quite alot according to the amount of content that it is in the page 
 
-3. For 1024px and 1280px it is quite challenging as it might actually interfere with the 600px and make the whole website alignemnt go everywhere but its managable to an extend where we need to make the height and width slightly smaller or larger so there is alot of trial and error
+3. For 1024px, it is quite challenging as it might actually interfere with the 600px and make the whole website alignemnt go everywhere but its managable to an extend where we need to make the height and width slightly smaller or larger so there is alot of trial and error
 
 4. For browser, i actually tried on bing and google and i would say that both website looks the same in both browser but i would prefer to use bing because it is easier to see the responsiveness of the website while google is abit hard because when u inspect, sometime they will not let you see the error. (will test of FIREWALL)
 
@@ -119,6 +119,11 @@ In addition, you should mention in this section how your project looks and works
 2. We also had troubles with storing the points while getting the username as a unqiueID. It is confusing as we are dealing with two method PUT and GET and it can mess up our mind alot espically when we tried doing console logs and the error are getting lesser but in the end it just doesnt work. But in the end we use async method and it works with catched error if it doesnt work. 
 
 3. For design wise, we were fine is just when there are more and more stuff to be added the allignments are all over the placel. It is worst when our computer size is different which make it hard but manageable. We just make @media according to our computer screen size and it helps alot for us when we are doing together. 
+
+
+**LINK TO GITHUB**
+https://github.com/RaeannTaiYuXuan/FEDASSG2
+
 
 
 **Credits :** 

@@ -76,7 +76,7 @@ function initTimer() {
     }, 500);
   } else {
     timeLeft--;
-    document.getElementById('timeTag').innerText = "Time Left: " + timeLeft;
+    
   }
 }
 

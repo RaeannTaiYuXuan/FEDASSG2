@@ -1,76 +1,64 @@
-(() => {
+(() => { // Self-invoking anonymous function to encapsulate variables and functions
+
+  // Shortcut for document.querySelector
   const $ = document.querySelector.bind(document);
 
-  let timeRotate = 7000; // 7 seconds
+  // Time in milliseconds for one rotation (7 seconds)
+  let timeRotate = 7000;
+
+  // Current rotation angle of the wheel
   let currentRotate = 0;
+
+  // Flag to track if the wheel is currently rotating
   let isRotating = false;
-  let userVouchers = 0; // Variable to keep track of user's vouchers
-  let userPoints = 0; // Variable to keep track of user's points
-  let spinsRemaining = 5; // Number of spins allowed per day
-  const spinsKey = 'dailySpins'; // Key for storing spins in localStorage
-  const lastSpinKey = 'lastSpinTime'; // Key for storing the timestamp of the last spin
 
-  const wheel = $('.wheel');
-  const btnWheel = $('.btn--wheel');
-  const modal = $('#popupModal');
-  const modalMessage = $('#modalMessage');
-  const voucherCountDisplay = $('.wheelvoucher'); // Use the class to select the element
-  const pointsDisplay = $('.points'); // Add a class to select the points element
-  const limitDisplay = $('.limitwheel'); // Add a class to select the limit element
+  // Variable to keep track of user's vouchers
+  let userVouchers = 0;
 
-  //=====< List of prizes including vouchers and points >=====
+  // Variable to keep track of user's points
+  let userPoints = 0;
+
+  // Number of spins allowed per day
+  let spinsRemaining = 5;
+
+  // Key for storing spins in localStorage
+  const spinsKey = 'dailySpins';
+
+  // Key for storing the timestamp of the last spin
+  const lastSpinKey = 'lastSpinTime';
+
+  // DOM elements selection
+  const wheel = $('.wheel'); // Wheel element
+  const btnWheel = $('.btn--wheel'); // Button to spin the wheel
+  const modal = $('#popupModal'); // Modal element
+  const modalMessage = $('#modalMessage'); // Message in the modal
+  const voucherCountDisplay = $('.wheelvoucher'); // Display for user's vouchers
+  const pointsDisplay = $('.points'); // Display for user's points
+  const limitDisplay = $('.limitwheel'); // Display for remaining spins
+
+  // List of prizes including vouchers and points
   const listGift = [
-    {
-      text: '100 points',
-      percent: 10 / 100,
-      type: 'points', // Type for points
-    },
-    {
-      text: '20 points',
-      percent: 10 / 100,
-      type: 'points', // Type for voucher
-    },
-    {
-      text: '1 points',
-      percent: 5 / 100,
-      type: 'points', // Type for points
-    },
-    {
-      text: '10 points',
-      percent: 5 / 100,
-      type: 'points', // Type for voucher
-    },
-    {
-      text: '50 points',
-      percent: 5 / 100,
-      type: 'points', // Type for points
-    },
-    {
-      text: '30 points ',
-      percent: 40 / 100,
-      type: 'points', // Type for voucher
-    },
-    {
-      text: '120 points',
-      percent: 10 / 100,
-      type: 'points', // Type for voucher
-    },
-    {
-      text: 'NA',
-      percent: 20 / 100,
-      type: 'none', // Type for points
-    },
+    { text: '100 points', percent: 10 / 100, type: 'points' },
+    { text: '20 points', percent: 10 / 100, type: 'points' },
+    { text: '1 points', percent: 5 / 100, type: 'points' },
+    { text: '10 points', percent: 5 / 100, type: 'points' },
+    { text: '50 points', percent: 5 / 100, type: 'points' },
+    { text: '30 points ', percent: 40 / 100, type: 'points' },
+    { text: '120 points', percent: 10 / 100, type: 'points' },
+    { text: 'NA', percent: 20 / 100, type: 'none' },
   ];
 
-  //=====< Number of prizes >=====
+
+  // Number of prizes
   const size = listGift.length;
 
-  //=====< Angle measurement of one prize on the circle >=====
+  // Angle measurement of one prize on the circle
   const rotate = 360 / size;
 
-  //=====< Angle needed to create the tilt, 90 degrees minus the angle one prize occupies >=====
+  // Angle needed to create the tilt, 90 degrees minus the angle one prize occupies
   const skewY = 90 - rotate;
 
+  // Generate the wheel with prizes
   listGift.map((item, index) => {
     const elm = document.createElement('li');
     elm.classList.add('wheel-prize');
@@ -89,12 +77,18 @@
     wheel.appendChild(elm);
   });
 
-  /********** Start function **********/
+  // Function to start spinning the wheel
   const start = () => {
+    // Get current time
     const currentTime = new Date().getTime();
+
+    // Get the timestamp of the last spin from localStorage or default to 0
     const lastSpinTime = parseInt(localStorage.getItem(lastSpinKey), 10) || 0;
+
+    // Calculate the time difference between the current time and the last spin time
     const timeDifference = currentTime - lastSpinTime;
-  
+
+    // Check if spins are remaining for the day
     if (spinsRemaining > 0) {
       isRotating = true;
       const random = Math.random();
@@ -103,11 +97,11 @@
       rotateWheel(currentRotate, gift.index);
       showGift(gift);
       updateSpinCount();
-    } else if (timeDifference >= 24 * 60 * 60 * 1000) { // 24 hours in milliseconds
+    } else if (timeDifference >= 24 * 60 * 60 * 1000) { // Check if a day has passed since the last spin
       // Reset daily spin count and allow a new set of spins
       spinsRemaining = 5;
       updateLimitDisplay();
-  
+
       // Proceed with the spin
       isRotating = true;
       const random = Math.random();
@@ -117,6 +111,7 @@
       showGift(gift);
       updateSpinCount();
     } else {
+      // Calculate remaining time until the next spin is allowed
       const remainingTime = formatRemainingTime(24 * 60 * 60 * 1000 - timeDifference);
       openModal(`You must wait ${remainingTime} before spinning again.`);
     }
@@ -129,45 +124,47 @@
     return `${hours} hours and ${minutes} minutes`;
   };
 
-  /********** Rotate wheel function **********/
+  // Function to rotate the wheel
   const rotateWheel = (currentRotate, index) => {
-    $('.wheel').style.transform = `rotate(${
-      currentRotate - index * rotate - rotate / 2
-    }deg)`;
+    $('.wheel').style.transform = `rotate(${currentRotate - index * rotate - rotate / 2
+      }deg)`;
   };
 
-  /********** Get prize function **********/
+  // Function to select a prize based on a random number
   const getGift = randomNumber => {
     let currentPercent = 0;
     let list = [];
 
+    // Iterate through the list of gifts and calculate cumulative percentages
     listGift.forEach((item, index) => {
       currentPercent += item.percent;
 
+      // If the random number falls within the current percentage, add the gift to the list
       if (randomNumber <= currentPercent) {
         list.push({ ...item, index });
       }
     });
 
+    // Return the selected gift
     return list[0];
   };
 
-  /********** Show prize on the screen function **********/
+  // Function to show the selected gift
   const showGift = gift => {
     let timer = setTimeout(() => {
       isRotating = false;
 
+      // Check the type of the gift
       if (gift.type === 'none') {
         openModal('Better Luck Next Time');
-      } 
-      else if (gift.type === 'points') {
+      } else if (gift.type === 'points') {
         // If the user gets points, update the points count
         userPoints += parseInt(gift.text) || 0; // Convert text to a number, default to 0 if not a valid number
         updatePointsCount();
 
-      // Update points in the database
-      const userName = localStorage.getItem("user-Name");
-      updateUserPoints(parseInt(gift.text) || 0, userName);
+        // Update points in the database
+        const userName = localStorage.getItem("user-Name");
+        updateUserPoints(parseInt(gift.text) || 0, userName);
       }
 
       openModal(gift.text);
@@ -175,18 +172,18 @@
     }, timeRotate);
   };
 
-  /********** Open modal function **********/
+  // Function to open the modal
   const openModal = message => {
     modalMessage.textContent = 'Congratulations !! You got ' + message;
     modal.style.display = 'block';
   };
 
-  /********** Update points count on the page **********/
+  // Function to update the points count on the page
   const updatePointsCount = () => {
     pointsDisplay.textContent = `Total Points: ${userPoints}`;
   };
 
-  /********** Update spin count **********/
+  // Function to update the spin count
   const updateSpinCount = () => {
     spinsRemaining--;
     localStorage.setItem(spinsKey, spinsRemaining);
@@ -194,12 +191,12 @@
     updateLimitDisplay();
   };
 
-  /********** Update limit display on the page **********/
+  // Function to update the remaining spins display on the page
   const updateLimitDisplay = () => {
     limitDisplay.textContent = `Total Spins Left: ${spinsRemaining}`;
   };
 
-  /********** Check spin count on page load **********/
+  // Function to check the spin count on page load
   const checkSpinCount = () => {
     const storedSpins = localStorage.getItem(spinsKey);
     if (storedSpins !== null) {
@@ -210,7 +207,7 @@
     updateLimitDisplay();
   };
 
-  /********** Initialize spin count on page load **********/
+  // Function to initialize the spin count on page load
   const initializeSpinCount = () => {
     const storedSpins = localStorage.getItem(spinsKey);
     if (storedSpins === null) {
@@ -221,19 +218,17 @@
   // Call the function to initialize spin count on page load
   initializeSpinCount();
 
-  /********** Event listener for the start button **********/
+  // Event listener for the start button
   btnWheel.addEventListener('click', () => {
     !isRotating && start();
   });
 
-  /********** Close modal function **********/
+  // Close modal function
   window.closeModal = function () {
     modal.style.display = 'none';
-    // Additional logic when closing the modal if needed
-    // ...
+    
   };
 
-  /********** Check spin count on page load **********/
+  // Check spin count on page load
   checkSpinCount();
-  initializeSpinCount();
 })();

@@ -40,7 +40,7 @@ In conclusion, the whole purpose is to make user comfortable, have fun and at th
 
 4. A filter for each category of women shoes. It will let users to chose what type of shoe they want and will lead them to the specific product in the same page. (Did it only for New Arrivals and Shoes). [Raeann]
 
-5. Users will be able to add their products into the cart and checkout with a popup message of how many points we get in total. This feature consist of storing the calculated points into restdb and after it will display text, even a lottie animation and will intro the the games so that user can earn points. But only when user login, they can checkout if not will be prompt to do so.  **[JoeYi - api]**
+5. Users will be able to add their products into the cart and checkout with a popup message of how many points we get in total. This feature consist of storing the calculated points into restdb and after it will display text, even a lottie animation and will intro the the games so that user can earn points. But only when user login, they can checkout if not will be prompt to do so.  **[JoeYi]**
 
 6. For sign up, users will be able to sign up and when success they will be redirected to the login page to login and thn when sucessful they will be redirected to the index page and the navbar of signup and login  will be hidden and the account,game and shopping cart logo will appear for easy navigation for users wanting to earn points ( this is because users bave to sign up before they can purchase or checkout anything from this shop). [Raeann]
 

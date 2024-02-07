@@ -1,4 +1,5 @@
 **PROJECT NAME**
+
 Saturday. 
 An ecommerce platform, selling different type of women shoes.
 
@@ -21,7 +22,7 @@ Additionally, we make it more fun where we actually use animated icons/images (l
 
 In conclusion, the whole purpose is to make user comfortable, have fun and at the same time try something different than other e-commerce platform. As our website not only just stick with the originals but we make things differently and unqiue from others. 
 
-**LIST OF USER STORIES ***
+**LIST OF USER STORIES**
 
 1. For the slideshow, when user click on the carrot, there will be different banners for them. 
 2. When user clicks on any product not in the product page (NewIn,Shoes and bags) they will be redirect to anyone of the page according to the item. 
@@ -29,7 +30,7 @@ In conclusion, the whole purpose is to make user comfortable, have fun and at th
  
 
 
-***FEATURES ***
+**FEATURES**
 
 1. An automatic and manual slideshow which user can interact with it by seeing the style of our store,offers and ongoing ot upcoming campaigns. It is accompanied by the nav bar when its on top, it will be transparent but when u start scrolling, it become a sticky navbar and will change the background color to white. [Raeann]
 
@@ -39,7 +40,7 @@ In conclusion, the whole purpose is to make user comfortable, have fun and at th
 
 4. A filter for each category of women shoes. It will let users to chose what type of shoe they want and will lead them to the specific product in the same page. (Did it only for New Arrivals and Shoes). [Raeann]
 
-5. Users will be able to add their products into the cart and checkout with a popup message of how many points we get in total. This feature consist of storing the calculated points into restdb and after it will display text, even a lottie animation and will intro the the games so that user can earn points. But only when user login, they can checkout if not will be prompt to do so.  [JoeYi]
+5. Users will be able to add their products into the cart and checkout with a popup message of how many points we get in total. This feature consist of storing the calculated points into restdb and after it will display text, even a lottie animation and will intro the the games so that user can earn points. But only when user login, they can checkout if not will be prompt to do so.  **[JoeYi - api]**
 
 6. For sign up, users will be able to sign up and when success they will be redirected to the login page to login and thn when sucessful they will be redirected to the index page and the navbar of signup and login  will be hidden and the account,game and shopping cart logo will appear for easy navigation for users wanting to earn points ( this is because users bave to sign up before they can purchase or checkout anything from this shop). [Raeann]
 
@@ -47,20 +48,21 @@ In conclusion, the whole purpose is to make user comfortable, have fun and at th
 
 8. User will be able to navigate to the game page to play three different types of games to earn points so that they can redeem voucher up to $50 OFF.  [Raeann]
 
-9. Wheel It - where users get a limit of 5 times and have to wait for 24hrs to reset the number of spins, users will also get vouchers and points through the wheel in random. [JoeYi]
+9. Wheel It - where users get a limit of 5 times and have to wait for 24hrs to reset the number of spins, users will also get points through the wheel in random. **[JoeYi - api part]**
 
-10. Shoes Memories - it is a memory card game where users will be times for a limit of 40s and if they sucesfully win the game they will be able to get points or sometimes they will get nothing. but if you lose, there will be a popup message saying that try again. [JoeYi]
+10. Shoes Memories - it is a memory card game where users will be times for a limit of 40s and if they sucesfully win the game they will be able to get points or sometimes they will get nothing. but if you lose, there will be a popup message saying that try again. **[JoeYi - api part]**
 
-11. Word Wizard - a game where is inspired by hangman where there is a random words that are related to our website, there is also a time limit of 30 seconds and a mistake limit of 6. so if you go over the time limit or hit 6 mistake , it will hide the keyboard and display you lost. if users are able to guess the hangman name they will earn points in random. [JoeYi]
+11. Word Wizard - a game where is inspired by hangman where there is a random words that are related to our website, there is also a time limit of 30 seconds and a mistake limit of 6. so if you go over the time limit or hit 6 mistake , it will hide the keyboard and display you lost. if users are able to guess the hangman name they will earn points in random. **[JoeYi - api part]**
 
-12. With the points earned from games and checkout, users will be able to redeem voucher with their points in the account page and when they redeem, the points in the restdb will decreased. The points and amount of voucher redeemed will be displayed and stored in account page in local storage. [JoeYi]
+12. With the points earned from games and checkout, users will be able to redeem voucher with their points in the account page and when they redeem, the points in the restdb will decreased. The points and amount of voucher redeemed will be displayed and stored in account page in local storage. **[JoeYi - api part]**
 
-***WORKED DONE ***
+**WORKED DONE**
+
 We mostly do everything together since we are using github. Both of us did abit of everything and make sure that we both understand front end and back end. 
 1. Raeann - Did front end, focused on user interaction, design and asethetic wise. 
 2. JoeYi - Did back end, focused on implementing restdb into the javascript. 
 
-**Technologies Used**
+**TECHNOLOGY USED**
 
 The Language we use is HTML, CSS, JavaScript and abit of Bootstrap.  
 
@@ -68,7 +70,7 @@ I also use additional libraries like :
 1. fa fa Icons - > i used it because it is very easy for to add icon just by using the <i class=""> function
  https://fontawesome.com/v4/icons/
 
-2. CSS Fonts w3 school - > i used it because when i use google fonts it take very long to load and sometimes the code given doesnt work on my side so i used css font style to change my font style 
+2. CSS Fonts w3 school - > i used  because when i use google fonts it take very long to load and sometimes the code given doesnt work on my side so i used css font style to change my font style 
  https://www.w3schools.com/css/css_font_google.asp 
 
 3. RESTDB -> used it because it is simple and easy to use as a backend tool. 
@@ -77,7 +79,7 @@ https://restdb.io/login/
 4. JQUery -> used to simplify DOM Manipulation. 
 
 
-**Testing -> will do when done with my website** (got testing of database , points and maybe adding to cart.  )
+**TESTING ->** (got testing of database , points and maybe adding to cart.  )
 
 1. Login Form : 
 Go to Login.html page 
@@ -100,7 +102,7 @@ Try to submit the form with an invalid email address and verify that a relevant 
 Try to submit the form with all inputs valid and verify that a success message appears.
 In addition, you should mention in this section how your project looks and works on different browsers and screen sizes.
 
-***DIFFERENT BROWSWER AND SCREEN SIZE ***
+**DIFFERENT BROWSWER AND SCREEN SIZE**
 
 1. We normally use max-width (600px,1024px and 1280px). We targeted the most used device which is mobile,laptop and desktop. 
 2. For our website, every page looks rather pleasing and comfortable even if it is in a small screen of max width 600px. for 600px, the width and height must be lessen by quite alot according to the amount of content that it is in the page 
@@ -110,7 +112,7 @@ In addition, you should mention in this section how your project looks and works
 4. For browser, i actually tried on bing and google and i would say that both website looks the same in both browser but i would prefer to use bing because it is easier to see the responsiveness of the website while google is abit hard because when u inspect, sometime they will not let you see the error. (will test of FIREWALL)
 
 
-***BUGs and CHALLENGES ***
+**BUGs and CHALLENGES**
 
 1. We actually met with a challenge with backend where we could not POST the sign up details to the restDB in the same javascript we initially created. (we planned to use one only) So, we had to clarify with our lecturer to see if it is possible to have more than one javascript and it works when i create another one. 
 

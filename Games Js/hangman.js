@@ -1,3 +1,4 @@
+// reference from external source from codingnepal.com
 
 const wordsAndHints = [
   { word: 'loafers', hint: 'Comfortable shoes often worn casually.' },
@@ -76,7 +77,7 @@ function initTimer() {
     }, 500);
   } else {
     timeLeft--;
-    
+    document.getElementById('timeTag').innerText = "Time Left: " + timeLeft; // Update the displayed time
   }
 }
 
@@ -87,6 +88,7 @@ function startTimer() {
 
   timer = setInterval(initTimer, 1000);
 }
+
 
 function resetGame() {
   selectedWord = getRandomWord();

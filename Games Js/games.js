@@ -1,3 +1,5 @@
+// reference from external source from codingnepal.com
+
 // getting the value from the html class name 
 const cards = document.querySelectorAll(".memory-card"), // Selecting all elements with the class "memory-card"
 timeTag = document.querySelector(".game-time b"), // Selecting the time tag

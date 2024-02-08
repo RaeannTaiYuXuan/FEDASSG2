@@ -16,114 +16,134 @@ closeMenuBtn.addEventListener("click", () => hamburgerBtn.click());
 // end of menu button 
 
 
+// Feature 1: Slideshow functionality
 
-
-// Select relevant HTML elements for image filtering
-function filterImages(category) {
-    // Get all elements with the class 'item'
-    const items = document.querySelectorAll('.card');
-
-    // Loop through each item
-    items.forEach(item => {
-        // Get the value of the 'data-name' attribute of the current item
-        const dataCategory = item.getAttribute('data-name');
-
-        // Check if the category is 'all' or matches the data-category of the item
-        if (category === 'all' || dataCategory === category) {
-            // Display the item
-            item.style.display = 'block';
-        } else {
-            // Hide the item
-            item.style.display = 'none';
-        }
-    });
-}
-
-
-// end of filter gallery
-
-window.addEventListener("load", function () {
-  // Set a timeout function to execute after 2000 milliseconds (2 seconds)
-  setTimeout(function () {
-      // Open the popup
-      openPopup();
-  }, 2000);
-});
-
-// Add a click event listener to the element with id 'close'
-document.querySelector("#close").addEventListener("click", function () {
-  // Close the popup when the 'close' element is clicked
-  closePopup();
-});
-
-// Function to open the popup
-function openPopup() {
-  document.querySelector(".popup").style.display = "block";
-}
-
-// Function to close the popup
-function closePopup() {
-  document.querySelector(".popup").style.display = "none";
-}
-
-
-
-// slideshow
+// Initialize slide index
 let slideIndex = 1;
+// Show the first slide
 showSlides(slideIndex);
 
+// Function to move to the next or previous slide
 function plusSlide(n) {
-  showSlides(slideIndex += n);
+showSlides(slideIndex += n);
 }
 
+// Function to display slides
 function showSlides(n) {
-  let i;
-  const slides = document.getElementsByClassName("mySlides");
-  if (n > slides.length) { slideIndex = 1; }
-  if (n < 1) { slideIndex = slides.length; }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slides[slideIndex - 1].style.display = "block";
-  setTimeout(function () {
-    plusSlide(1); // Change to the next slide every 2 seconds
-  }, 10000);
+let i;
+// Get all slides
+const slides = document.getElementsByClassName("mySlides");
+// If the index is out of bounds, reset it
+if (n > slides.length) { slideIndex = 1; }
+if (n < 1) { slideIndex = slides.length; }
+// Hide all slides
+for (i = 0; i < slides.length; i++) {
+  slides[i].style.display = "none";
 }
-
-function prevSlide() {
-  plusSlide(-1);
-}
-
-function nextSlide() {
+// Display the current slide
+slides[slideIndex - 1].style.display = "block";
+// Set a timeout to move to the next slide automatically after 10 seconds
+setTimeout(function () {
   plusSlide(1);
+}, 10000);
+}
+
+// Function to move to the previous slide
+function prevSlide() {
+plusSlide(-1);
+}
+
+// Function to move to the next slide
+function nextSlide() {
+plusSlide(1);
 }
 
 // Start automatic slideshow
 showSlides(slideIndex);
 
 
+// Feature 2: Navbar color change on scroll
 
-
-
-
-// scrolling and nav bar become white
+// Add event listener for scrolling
 window.addEventListener('scroll', function() {
+  // Select the navbar element
   var navbar = document.querySelector('.navbar');
-  // You may want to check for a specific scroll position, e.g., 50 pixels down from the top
+  // Check scroll position
   if (window.scrollY > 0) {
-    navbar.style.backgroundColor = "#fff"; // Change to white background
-    // Change the color of all nav items to black
+    // Change navbar background color to white
+    navbar.style.backgroundColor = "#fff";
+    // Change color of nav items to black
     navbar.querySelectorAll('a').forEach(function(link) {
       link.style.color = "black";
     });
   } else {
-    navbar.style.backgroundColor = "transparent"; // Change back to transparent
-    // Change the color of all nav items back to white or the original color
+    // Change navbar background color to transparent
+    navbar.style.backgroundColor = "transparent";
+    // Change color of nav items to white or original color
     navbar.querySelectorAll('a').forEach(function(link) {
       link.style.color = "white";
     });
   }
-});
+  });
+
+
+  // Feature 3: Popup functionality
+
+// Execute when the window is loaded
+window.addEventListener("load", function () {
+  // Set a timeout function to execute after 2000 milliseconds (2 seconds)
+  setTimeout(function () {
+      // Open the popup
+      openPopup();
+  }, 2000);
+  });
+  
+  // Add a click event listener to the element with id 'close'
+  document.querySelector("#close").addEventListener("click", function () {
+  // Close the popup when the 'close' element is clicked
+  closePopup();
+  });
+  
+  // Function to open the popup
+  function openPopup() {
+  document.querySelector(".popup").style.display = "block";
+  }
+  
+  // Function to close the popup
+  function closePopup() {
+  document.querySelector(".popup").style.display = "none";
+  }
+
+//Feature  4
+// Select relevant HTML elements for image filtering
+// Function to filter images based on category
+function filterImages(category) {
+  // Get all elements with the class 'card'
+  const items = document.querySelectorAll('.card');
+
+  // Loop through each item
+  items.forEach(item => {
+      // Get the value of the 'data-name' attribute of the current item
+      const dataCategory = item.getAttribute('data-name');
+
+      // Check if the category is 'all' or matches the data-category of the item
+      if (category === 'all' || dataCategory === category) {
+          // Display the item
+          item.style.display = 'block';
+      } else {
+          // Hide the item
+          item.style.display = 'none';
+      }
+  });
+}
+
+
+
+
+
+
+
+
 
 
 

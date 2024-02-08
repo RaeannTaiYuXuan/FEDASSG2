@@ -129,7 +129,7 @@ Try to put an invalid password and verify with a alert of invalid password
 
 
 **LINK TO GITHUB**
-https://github.com/RaeannTaiYuXuan/FEDASSG2
+https://github.com/RaeannTaiYuXuan/FEDASSG2.git
 
 
 

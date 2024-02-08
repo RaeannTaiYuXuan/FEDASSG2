@@ -1,3 +1,5 @@
+// reference from external source from codingnepal.com
+
 (() => { // Self-invoking anonymous function to encapsulate variables and functions
 
   // Shortcut for document.querySelector
